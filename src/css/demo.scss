@@ -1,0 +1,41 @@
+
+  *{margin:0;padding:0;}
+  .box{
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    background: #f0f0f0;
+    overflow: hidden;
+    margin: 40px;
+  }
+  .box ul {
+    padding: 20px;
+  }
+  .box li{
+    position: relative;
+    overflow: hidden;
+    height: 80px;
+    line-height: 80px;
+    border-bottom: #ccc solid 1px;
+    text-align: center;
+  }
+  .ripple{
+    width: 0;
+    height: 0;
+    opacity: 1;
+    border-radius: 50%;
+    position: absolute;
+    transform: scale(0);
+    pointer-events: none;
+    background: rgba(0, 0, 0,.3);
+  }
+  .ripple_active{
+    animation: show .6s forwards;
+  }
+
+  @keyframes show{
+    to{
+      opacity:0;
+      transform: scale(1);
+    }
+  }

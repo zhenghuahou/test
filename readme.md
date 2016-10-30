@@ -5,11 +5,11 @@
 ###热加载
 
 第一步:
-> ** npm install **
+> **npm install**
 
 
 第二步(启动热加载）:
-> ** npm run dev **
+> **npm run dev**
 
 
 第三步 在浏览器中输入 http://localhost:8888/,修改src目录下的js或者css即可看见热加载效果

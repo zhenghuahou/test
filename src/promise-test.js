@@ -1,13 +1,8 @@
-// import promis from "./lib/promis";
-// import Vue from "Vue";
-// var promis = require("./lib/promis.js")
+import promis from "./lib/promis";
+import Vue from "Vue";
  
 
-// import * from './lib/promis.js';
-// import Vue from 'Vue';
-// console.log(" pp:",Vue);
-
-
 // console.log("promis:",promis,Vue);
-// console.log("Vue:",Vue);
-// window.tt = promis.resolve(45);
+window.tt = promis.resolve(45).then(function(){
+	console.info("&&&&&&&&&&",arguments)
+});

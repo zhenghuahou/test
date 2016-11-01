@@ -86,6 +86,11 @@ app.get("/test", function(req, res) {
 });
 
 
+app.get("/gen", function(req, res) {
+  res.sendFile(process.cwd() + '/demo/generator.html');
+});
+
+
 if (require.main === module) {
   var server = http.createServer(app);
 

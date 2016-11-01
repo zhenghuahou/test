@@ -1,5 +1,9 @@
 require('./css/demo.scss');
 
+
+import pp from "./promise-test.js"
+
+
 var Ripple = e => { // event
     var tar = e.target
     // var ripple = document.querySelector('#ripple')
@@ -51,6 +55,9 @@ box.onclick = function(e) {
     Ripple(e)
   }
 }
+
+
+
 
 
 

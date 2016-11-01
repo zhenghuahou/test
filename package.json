@@ -5,7 +5,9 @@
   "description": "test",
   "homepage": "https://github.com/zhenghuahou/test",
   "license": "MIT",
-  "config" : { "port" : "8888"},
+  "config": {
+    "port": "8888"
+  },
   "keywords": [
     "vue",
     "test"
@@ -30,6 +32,7 @@
     "clean-webpack-plugin": "^0.1.13",
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.25.0",
+    "monkey-hot-loader": "0.0.3",
     "node-sass": "^3.10.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",

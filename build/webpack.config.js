@@ -7,11 +7,11 @@ var CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
 	watch: true,
     entry: {
-    	"app":[process.cwd() + "/src/app.js"]
+    	"app":["./src/app.js"]
     },
     output: {
         path: path.resolve(process.cwd(),'dist/'),
-        publicPath:"/",
+        publicPath:"/dist",
         filename: "[name].bundle.js"
     },
     module: {
@@ -19,10 +19,9 @@ module.exports = {
             {
             	test: /.js/, 
             	exclude: /node_modules/, 
-            	loader: 'babel', 
-            	query: {
-            		presets: [['es2015', {modules: false}]]
-            	}
+                // loader: 'monkey-hot!babel'
+            	loaders: ['monkey-hot','babel']
+            	
         	},
         	{
 		        test: /\.scss$/,
@@ -32,6 +31,7 @@ module.exports = {
         ]
     },
     devtool: '#source-map',
+
     plugins:[
     	// Webpack 1.0
 	    new webpack.optimize.OccurenceOrderPlugin(),

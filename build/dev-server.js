@@ -18,12 +18,13 @@ function handleConfig(config) {
     let localConfig = Object.create(config);
     // let localConfig = config;
     let toString = Object.prototype.toString;
-	let hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=true';
-	let entry = localConfig.entry;
+	  let hotMiddlewareScript = 'webpack-hot-middleware/client?timeout=20000&reload=true&noInfo=true';
+	 let entry = localConfig.entry;
 
     localConfig.plugins.push( new webpack.HotModuleReplacementPlugin());
 
-    localConfig.devtool = 'cheap-module-eval-source-map' // ++
+    localConfig.devtool = '#cheap-module-eval-source-map' // ++
+    // localConfig.devtool = '#cheap-module-source-map' // ++
 
     for(let key in entry){
         let item = entry[key];
@@ -69,7 +70,8 @@ app.use(webpackHotMiddleware(compiler, {
 
 
 //设置静态资源文件的根目录为 dist，静态资源都是从dist中读取
-app.use(express.static(path.join(__dirname, '../dist')));
+// app.use(express.static(path.join(__dirname, '../')));
+// app.use("/dist",express.static(path.join(__dirname, '../dist')));
 // app.use(express.static(process.cwd() + '/dist')); //ok
 
 // Do anything you like with the rest of your express application.

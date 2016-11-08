@@ -10,7 +10,7 @@ var slice = Array.prototype.slice;
  */
 
 // module.exports = co['default'] = co.co = co;
-co['default'] = co.co = co;
+// co['default'] = co.co = co;
 /**
  * Wrap the given generator `fn` into a
  * function that returns a promise.
@@ -24,9 +24,11 @@ co['default'] = co.co = co;
  */
 
 co.wrap = function (fn) {
+  console.log(" co.wrap this:",this===co);
   createPromise.__generatorFunction__ = fn;
   return createPromise;
   function createPromise() {
+    console.info(" this:",this === window,"  arguments:",arguments);
     return co.call(this, fn.apply(this, arguments));
   }
 };
@@ -62,10 +64,13 @@ function co(gen) {
      * @api private
      */
 
+     //res记录的是：上一个yield的返回值中value的值({done:false,value:''}中value的值)
+     //ret记录的是：本次yield的返回值(整个{done:false,value:''})
     function onFulfilled(res) {
       var ret;
+      console.warn(" res:",res," ret:",ret," gen:",gen)
       try {
-        ret = gen.next(res);
+        ret = gen.next(res); //会在当前yield处执行完毕并停住
       } catch (e) {
         return reject(e);
       }
@@ -101,7 +106,15 @@ function co(gen) {
     function next(ret) {
       if (ret.done) return resolve(ret.value);
       var value = toPromise.call(ctx, ret.value);
-      if (value && isPromise(value)) return value.then(onFulfilled, onRejected);
+      // if (value && isPromise(value)) return value.then(onFulfilled, onRejected);
+      if (value && isPromise(value)) return value.then(function(data){
+
+        onFulfilled(data);
+
+      }, function(data){
+
+        onRejected("love",data);
+      });
       return onRejected(new TypeError('You may only yield a function, promise, generator, array, or object, '
         + 'but the following object was passed: "' + String(ret.value) + '"'));
     }

@@ -9,8 +9,21 @@ var slice = Array.prototype.slice;
  * Expose `co`.
  */
 
-module.exports = co['default'] = co.co = co;
+ // export var co1 = co;
 
+// module.exports = co['default'] =  co;
+module.exports = co.co = co;
+//导出co.co 是为了方便import {co} from "./lib/co"这样在其他文件使用
+
+
+// export function getUsefulContents(url, callback) {
+// }
+// module.exports = function getUsefulContents(url, callback) {
+// }
+// module.exports = co['default'] =  co;
+// module.exports = co.co = "test";
+
+co.test="11"
 /**
  * Wrap the given generator `fn` into a
  * function that returns a promise.

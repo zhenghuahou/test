@@ -38,13 +38,7 @@ module.exports = {
             {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
-                // loaders: ['react-hot','babel']
-                // loaders: ['react-hot', 'babel']
                 loaders: ['react-hot', 'babel']
-                // loaders: ['babel']
-                // loader: 'babel-loader?' + JSON.stringify({
-                //         compact: false
-                // })
             },
         	{
 		        test: /\.[ls]?css$/,
@@ -55,13 +49,11 @@ module.exports = {
     },
     
     devServer: {
-        // contentBase: ['react-demo'] , //本地服务器所加载的页面所在的目录,
         contentBase: 'react-demo' , //本地服务器所加载的页面所在的目录,加上这一行访问途径为http://localhost:8080/assets/index.html
         //不加这一行的话访问html的路径为http://localhost:8080/react-demo/assets/index.html
         port: 8080,
         hot: true,
         noInfo:true,
-  		// historyApiFallback: true,
   		clientLogLevel:'none',
         colors: true,  //终端中输出结果为彩色
         // process: true,//显示合并代码进度 

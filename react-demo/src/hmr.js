@@ -4,17 +4,22 @@
 这个需要加,否则控制台会提示
 否则热替换不生效
 */
+// if(module.hot) {
+// 	console.clear();
+// 	module.hot.accept(function(err) {
+// 		if(err) {
+// 			console.error("Cannot apply hot update", err);
+// 		}
+// 	});
+// }
+
 if(module.hot) {
 	console.clear();
-	module.hot.accept(function(err) {
-		if(err) {
-			console.error("Cannot apply hot update", err);
-		}
-	});
+    module.hot.accept();
 }
 
 require('./a.js');
 require('./b.js');
 
 console.info("hmr.js测试文件");
-// aa.innerHTML='abc';
+aa.innerHTML='hmr';

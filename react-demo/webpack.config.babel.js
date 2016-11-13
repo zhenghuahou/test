@@ -2,15 +2,23 @@
 用热加载并不会，并不会生成dist,所生成的js文件在内存中
 */
 
-var path = require("path");
-console.log('path:',path.resolve('./react-demo/build/config/config.js')," __dirname:",__dirname);
-// import {provide} from './build/config/config.js';
-// var webpack = require("webpack");
+import path from 'path';
+import webpack from 'webpack'
+
+import provide from './build/config/provide.js';
+console.log('provide:',provide);
+//provide: { React: 'react', ReactDOM: 'react-dom' }
 
 
+// import {provide} from './build/config/provide.js';
+ // console.log('provide:',provide);
+//provide: undefined
 
 
-console.log(" provide:",provide);
+// import {provide} from './build/config';
+// console.log('provide:',provide); //Cannot find module './build/config'
+
+
 module.exports = {
 	// context: __dirname, //不加这行的话,这个./是相对根目录，即是test文件夹
 	context: __dirname, //加这行的话,这个./是相webpack配置文件所在的js文件目录
@@ -61,7 +69,7 @@ module.exports = {
     },
 
 	plugins: [
-	 	new webpack.ProvidePlugin(),
+	 	new webpack.ProvidePlugin(provide),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 	]

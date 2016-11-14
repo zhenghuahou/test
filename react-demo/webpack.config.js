@@ -3,14 +3,8 @@
 */
 
 var path = require("path");
-console.log('path:',path.resolve('./react-demo/build/config/config.js')," __dirname:",__dirname);
-// import {provide} from './build/config/config.js';
 var webpack = require("webpack");
 
-
-
-
-// console.log(" provide:",provide);
 module.exports = {
 	// context: __dirname, //不加这行的话,这个./是相对根目录，即是test文件夹
 	context: __dirname, //加这行的话,这个./是相webpack配置文件所在的js文件目录
@@ -30,13 +24,7 @@ module.exports = {
             {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
-                // loaders: ['react-hot','babel']
-                // loaders: ['react-hot', 'babel']
                 loaders: ['react-hot', 'babel']
-                // loaders: ['babel']
-                // loader: 'babel-loader?' + JSON.stringify({
-                //         compact: false
-                // })
             },
         	{
 		        test: /\.[ls]?css$/,
@@ -47,13 +35,11 @@ module.exports = {
     },
     
     devServer: {
-        // contentBase: ['react-demo'] , //本地服务器所加载的页面所在的目录,
         contentBase: 'react-demo' , //本地服务器所加载的页面所在的目录,加上这一行访问途径为http://localhost:8080/assets/index.html
         //不加这一行的话访问html的路径为http://localhost:8080/react-demo/assets/index.html
         port: 8080,
         hot: true,
         noInfo:true,
-  		// historyApiFallback: true,
   		clientLogLevel:'none',
         colors: true,  //终端中输出结果为彩色
         // process: true,//显示合并代码进度 
@@ -61,7 +47,6 @@ module.exports = {
     },
 
 	plugins: [
-	 	new webpack.ProvidePlugin({}),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 	]

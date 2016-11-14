@@ -1,14 +1,12 @@
 /*
 用热加载并不会，并不会生成dist,所生成的js文件在内存中
 */
-
 import path from 'path';
 import webpack from 'webpack'
 
 import provide from './build/config/provide.js';
 console.log('provide:',provide);
 //provide: { React: 'react', ReactDOM: 'react-dom' }
-
 
 // import {provide} from './build/config/provide.js';
  // console.log('provide:',provide);

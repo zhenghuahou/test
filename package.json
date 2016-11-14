@@ -24,7 +24,8 @@
     "test:local": "npm run test -- --local hjk --port 8080",
     "dev": "node build/dev-server.js WEBPACK_CONFIG=./build/webpack.config.js --env dev --port 8888",
     "react": "webpack --config react-demo/webpack.config.js  --env dev --port 8888",
-    "react-dev": "webpack-dev-server   --config react-demo/webpack.config.babel.js"
+    "react-dev": "webpack-dev-server   --config react-demo/webpack.config.js",
+    "react-babel": "babel-node --config react-demo/webpack.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",

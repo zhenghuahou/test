@@ -14,12 +14,19 @@
 // }
 
 if(module.hot) {
-	console.clear();
+	// console.clear();
     module.hot.accept();
 }
 
-require('./a.js');
-require('./b.js');
+// require('./a.js');
+
+
+// require('./b.js');
+
+import dlt,* as bb from './b.js';
+console.info(dlt,bb.default === dlt," 导出bb:",bb);
+//bb.default === dlt //===>true
+bb.default();
 
 console.info("hmr.js测试文件");
 aa.innerHTML='hmr';

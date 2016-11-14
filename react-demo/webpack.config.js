@@ -5,12 +5,12 @@
 var path = require("path");
 console.log('path:',path.resolve('./react-demo/build/config/config.js')," __dirname:",__dirname);
 // import {provide} from './build/config/config.js';
-// var webpack = require("webpack");
+var webpack = require("webpack");
 
 
 
 
-console.log(" provide:",provide);
+// console.log(" provide:",provide);
 module.exports = {
 	// context: __dirname, //不加这行的话,这个./是相对根目录，即是test文件夹
 	context: __dirname, //加这行的话,这个./是相webpack配置文件所在的js文件目录
@@ -61,7 +61,7 @@ module.exports = {
     },
 
 	plugins: [
-	 	new webpack.ProvidePlugin(),
+	 	new webpack.ProvidePlugin({}),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 	]

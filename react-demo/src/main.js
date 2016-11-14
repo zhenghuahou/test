@@ -1,6 +1,11 @@
 require("./hmr");
 
-// var React = require('react');
+var React = require('react');
+var ReactDOM = require('react-dom');
+import {alias,entry_main,tt} from './config';
+import * as con from './config';
+import * as con1 from './config';
+import * as con2 from './config';
 
 
 /*
@@ -11,16 +16,18 @@ main.bundle.js:8347 [HMR] The following modules couldn't be hot updated:
 
 // }
 if(module.hot) {
-	console.clear();
+	// console.clear();
     module.hot.accept();
 }
 
-// var ReactDOM = require('react-dom');
+
 console.log(" ReactDOM:",ReactDOM);
 console.log(" React:",React);
+console.log(" alias:",alias," tt:",tt);
+console.log(" con:",con,con.alias === alias)
 
 ReactDOM.render(
-    <h1>Hello, world!</h1>,
+    <h1>Hello, world</h1>,
     document.getElementById('aa')
   );
 

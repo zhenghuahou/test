@@ -4,6 +4,7 @@
 
 var path = require("path");
 var webpack = require("webpack");
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	// context: __dirname, //不加这行的话,这个./是相对根目录，即是test文件夹
@@ -47,6 +48,7 @@ module.exports = {
     },
 
 	plugins: [
+        // new ExtractTextPlugin("[name].css"),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 	]

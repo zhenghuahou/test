@@ -24,11 +24,17 @@ if(module.hot) {
 console.log(" ReactDOM:",ReactDOM);
 console.log(" React:",React);
 console.log(" alias:",alias," tt:",tt);
-console.log(" con:",con,con.alias === alias)
+console.log(" con:",con,con.alias === alias);
+
+
 
 ReactDOM.render(
     <h1>Hello, world</h1>,
     document.getElementById('aa')
   );
+
+
+
+
 
 

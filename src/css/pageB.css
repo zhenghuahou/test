@@ -1,0 +1,22 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: #ccc;
+	font-size: 14px;
+	margin:0;
+	padding:0;
+}
+
+a{
+	color: #333;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+ul,li{
+	/*list:none;*/
+}
+i,b,del,div{font-style: normal;}

@@ -29,13 +29,13 @@ module.exports = {
                 })
             },
         	{
-		        test: /\.scss$/,
+		        test: /\.[ls]?css$/,
         		 //.scss 文件使用 style-loader、css-loader 和 sass-loader 来编译处理
 		        loader: 'style!css!sass?sourceMap'
 		    }
         ]
     },
-    devtool: '#source-map',
+    devtool: 'cheap-module-eval-source-map',
     plugins:[
     	// Webpack 1.0
 	    new webpack.optimize.OccurenceOrderPlugin(),

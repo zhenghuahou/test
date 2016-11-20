@@ -33,13 +33,13 @@ gulp.task("default", function(callback) {
         //比下面的console后执行
 
         //打印全部信息
-        console.log(stats.toString('verbose'));
+        // console.log(stats.toString('verbose'));
 
-        // console.log(stats.toString({
-        //     children:true,
-        //     chunks: false, // Makes the build much quieter
-        //     colors: true
-        // }));
+        console.log(stats.toString({
+            children:true,
+            chunks: false, // Makes the build much quieter
+            colors: true
+        }));
 
 
         //只打印错误、警告信息

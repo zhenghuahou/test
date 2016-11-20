@@ -4,6 +4,7 @@ var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
+// var StableModuleIdAndHash = require('./stableModuleIdAndHash');
 
 module.exports = {
 	watch: true,
@@ -50,15 +51,14 @@ module.exports = {
     // devtool: 'cheap-eval-source-map',
     // devtool: 'cheap-module-source-map',
     // devtool: 'cheap-source-map',
-    devtool: 'eval',
+    // devtool: 'eval',
 
     plugins:[
-       
         //the name of the chunk
         new ExtractTextPlugin("[name].css"),
 
     	// Webpack 1.0
-	    new webpack.optimize.OccurenceOrderPlugin(),
+	    // new webpack.optimize.OccurenceOrderPlugin(),
 	    // Webpack 2.0 fixed this mispelling
 	    // new webpack.optimize.OccurrenceOrderPlugin(),
 	    // new webpack.HotModuleReplacementPlugin(), //这个插件会向生产的代码中注入热更新相关的js代码,所以在 dev-server.js 开启热加载的时候在手动添加这个plugin
@@ -81,9 +81,8 @@ module.exports = {
             name: "common",
             // name: ['app', 'common'],
             // name: ['common', 'app'],
-
-            minChunks: 2,
-            // chunks: ["pageA", "app"],
+            minChunks: 2
+            // chunks: ["pageA", "pageB"],
         }),
         //自动打开指定页面
         // new OpenBrowserPlugin({

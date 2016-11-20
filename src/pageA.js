@@ -1,4 +1,4 @@
-console.log("pageA.js--.........123");
 import './css/pageA.css'
-import './app'
-import './util'
+// import './app'
+import './b'
+console.log("pageA.js");

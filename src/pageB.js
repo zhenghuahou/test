@@ -1,3 +1,5 @@
-console.log("pageB.js,,,,,,,");
 import './css/pageB.css'
-import './app'
+import './b'
+import './util'
+
+console.log("pageB.js");

@@ -1,11 +1,5 @@
-require("./hmr");
-
-var React = require('react');
-var ReactDOM = require('react-dom');
-import {alias,entry_main,tt} from './config';
-import * as con from './config';
-import * as con1 from './config';
-import * as con2 from './config';
+// require("./hmr");
+require("./test");
 
 
 /*
@@ -21,17 +15,10 @@ if(module.hot) {
 }
 
 
-console.log(" ReactDOM:",ReactDOM);
-console.log(" React:",React);
-console.log(" alias:",alias," tt:",tt);
-console.log(" con:",con,con.alias === alias);
-
-
-
-ReactDOM.render(
-    <h1>Hello, world</h1>,
-    document.getElementById('aa')
-  );
+// ReactDOM.render(
+//     <h1>Hello, world</h1>,
+//     document.getElementById('aa')
+//   );
 
 
 

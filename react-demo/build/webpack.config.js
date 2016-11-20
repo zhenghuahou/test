@@ -4,15 +4,19 @@
 
 var path = require("path");
 var webpack = require("webpack");
-let ExtractTextPlugin = require('extract-text-webpack-plugin');
+var provide = require('./config/provide.js');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+console.log(__dirname," path.resolve('./')--->:",path.resolve("./react-demo/src/main.js"));
 
 module.exports = {
+    watch:true,
 	// context: __dirname, //不加这行的话,这个./是相对根目录，即是test文件夹
 	context: __dirname, //加这行的话,这个./是相webpack配置文件所在的js文件目录
 	entry: [
 		'webpack-dev-server/client?http://localhost:8080',
     	'webpack/hot/only-dev-server',
-    	'./src/main.js'],
+    	'../src/main.js'],
 	output: {
         path: './dist',
         publicPath:"/",
@@ -49,6 +53,7 @@ module.exports = {
 
 	plugins: [
         // new ExtractTextPlugin("[name].css"),
+        new webpack.ProvidePlugin(provide),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 	]

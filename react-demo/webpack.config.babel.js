@@ -12,7 +12,6 @@ console.log('provide:',provide);
  // console.log('provide:',provide);
 //provide: undefined
 
-
 // import {provide} from './build/config';
 // console.log('provide:',provide); //Cannot find module './build/config'
 

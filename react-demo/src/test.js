@@ -1,7 +1,7 @@
 // import Greet from '../component/greet.js'
-import InputState from '../component/InputState.js'
+// import InputState from '../component/InputState.js'
+import CommentList from '../component/Comment.js'
 
-console.warn('InputState-->',InputState);
 
 var names = ['Jack', 'Tom', 'Alice','aa'];
 var arr = [
@@ -21,17 +21,13 @@ names.map(function(){
 //         }
 //       });
 
+
+
       ReactDOM.render(
         <div className='agcd' > 
           { /* <InputState name="JackH" data-cusm={names}/> */ }
-           <InputState  /* 多
-         行
-         注释 */ name="JackH" data-cusm={names}/> 
-          <p>11</p>
-          <ul>
-            <li>123</li>
-            <li>456</li>
-          </ul>
+         
+          <CommentList />
         </div>,
         document.getElementById('container')
       );

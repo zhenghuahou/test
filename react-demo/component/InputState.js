@@ -17,7 +17,30 @@ Search.Row = React.createClass({
               <a htmlFor='a' className='ss'>{this.props.text}</a>
           );
         }
+
  });
+
+
+
+
+
+var CommentList = React.createClass({
+  render: function() {
+    var commentNodes = this.props.data.map(function(comment) {
+      return (
+        <Comment author={comment.author} key={comment.id}>
+          {comment.text}
+        </Comment>
+      );
+    });
+    return (
+      <div className="commentList">
+        {commentNodes}
+      </div>
+    );
+  }
+});
+
 
 var Page = React.createClass({
   render: function() {
@@ -25,7 +48,8 @@ var Page = React.createClass({
     return <div className="input">
          <h1>!!!elcome!</h1>
          <Search searchType="title" />
-         <Search  searchType="content" />
+         <Search  searchType="content"  
+         onClick={this.onClick}/>
          <Search.Row  text="Search.Row--->content" href='www'  for='dd' class='tt' className='rowns'/>
       </div>
     ;

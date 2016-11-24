@@ -7,6 +7,10 @@ var data = [
 
 
 var CommentList = React.createClass({
+   getInitialState: function() {
+         console.log(" getInitialState",this);
+         return null
+  },
   render: function() {
     var commentNodes = data.map(function(comment,index) {
       return (

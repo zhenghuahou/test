@@ -25,9 +25,10 @@ names.map(function(){
 
       ReactDOM.render(
         <div className='agcd' > 
-          { /* <InputState name="JackH" data-cusm={names}/> */ }
+        
+        
          
-          <CommentList />
+          <CommentList  /* <InputState name="JackH" data-cusm={names}/> */  />
         </div>,
         document.getElementById('container')
       );

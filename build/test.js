@@ -5,6 +5,11 @@ var util = require('util');
 var webpackConfig = require('./webpack.config');
 
 
+
+
+
+
+
 function pad(n) {
   return n < 10 ? '0' + n.toString(10) : n.toString(10);
 }
@@ -51,6 +56,7 @@ gulp.task("default", function(callback) {
         // }
 
         // log(string)
+        
 
         log(chalk.cyan('-------------------^__^-----webpack编译成功-------------------'));
 

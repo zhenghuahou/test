@@ -38,7 +38,7 @@
 Promise
 Hi!
 resolve 时机-------------->
-promise.then--->aa: 2 前面 测试 resolve 时机  bb: undefined
+promise.then--->aa: 2 测试 resolve 时机  bb: undefined
 setTimeout:
 */
 

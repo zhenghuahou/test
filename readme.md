@@ -15,6 +15,10 @@
 - 第三步 在浏览器中输入 http://localhost:8888/,修改src目录下的js或者css即可看见热加载效果
 
 
+python ftp.py demo  1.0.2
+> python ftp.py 项目 版本号
+> 通过命令把把zip文件夹下面的zip包上传到ftp
+
 
 
 #####其他案例

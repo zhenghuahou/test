@@ -1,22 +1,23 @@
+'use strict';
 var path = require("path");
 var webpack = require("webpack");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
-// var StableModuleIdAndHash = require('./plugins/stableModuleIdAndHash');
 var ExtendedDefinePlugin = require('./plugins/extended-define-webpack-plugin');
 
-
-console.log('ExtendedDefinePlugin--------------->',ExtendedDefinePlugin);
+// import d,{config as htmlPluginConfig,htmlPlugin} from  './htmlplugin.js'; //ok
+import d,{htmlPlugin} from  './htmlplugin.js';
 
 
 module.exports = {
 	watch: true,
     entry: {
         "app":["./src/app.js"],
-        "pageA": './src/pageA.js',
-        "pageB": './src/pageB.js'
+        "test": './src/pageA.js',
+        "pageB": './src/pageB.js',
+        "async": './src/async.js'
     },
     output: {
         path: path.resolve(process.cwd(),'dist/'),
@@ -55,7 +56,7 @@ module.exports = {
     },
     // devtool: 'cheap-eval-source-map',
     // devtool: 'cheap-module-source-map',
-    // devtool: 'cheap-source-map',
+    devtool: 'cheap-source-map',
     // devtool: 'eval',
 
     plugins:[
@@ -96,7 +97,12 @@ module.exports = {
           TWO: '1 + 1',
           DESCRIPTION: JSON.stringify('This Is The Test Text.'),
           SOME_BOOLEAN: true
-        })
+        }),
+
+
+        ...htmlPlugin(),
+
+
         // new ExtendedDefinePlugin({
         //   'process.env': {
         //     NODE_ENV: 'production'

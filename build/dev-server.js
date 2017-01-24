@@ -10,7 +10,6 @@ var argv = require('yargs').argv;
 var webpackConfig = require('./webpack.config');
 
 // console.log(`pwd:${process.cwd()}`)
-// console.log(" --------->process.argv:",process.argv)
 // console.log(" \n argv:",argv);
 
 function handleConfig(config) {
@@ -23,7 +22,7 @@ function handleConfig(config) {
 
     localConfig.plugins.push( new webpack.HotModuleReplacementPlugin());
 
-    localConfig.devtool = '#cheap-module-eval-source-map' // ++
+    // localConfig.devtool = '#cheap-module-eval-source-map' // ++
     // localConfig.devtool = '#cheap-module-source-map' // ++
 
     for(let key in entry){
@@ -46,8 +45,6 @@ webpackConfig = handleConfig(webpackConfig);
 
 
 var compiler = webpack(webpackConfig);
-
-
 var app = express();
 
 
@@ -75,21 +72,19 @@ app.use(webpackHotMiddleware(compiler, {
 // app.use(express.static(process.cwd() + '/dist')); //ok
 
 // Do anything you like with the rest of your express application.
-
-app.get("/", function(req, res) {
-  res.sendFile(process.cwd() + '/demo/index.html');
-});
-
-
-app.get("/test", function(req, res) {
-  res.sendFile(process.cwd() + '/demo/test.html');
-});
+// app.get("/", function(req, res) {
+//   res.sendFile(process.cwd() + '/demo/index.html');
+// });
 
 
-app.get("/gen", function(req, res) {
-  res.sendFile(process.cwd() + '/demo/generator.html');
-});
+// app.get("/test", function(req, res) {
+//   res.sendFile(process.cwd() + '/demo/test.html');
+// });
 
+
+// app.get("/gen", function(req, res) {
+//   res.sendFile(process.cwd() + '/demo/generator.html');
+// });
 
 if (require.main === module) {
   var server = http.createServer(app);

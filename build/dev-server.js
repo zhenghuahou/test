@@ -1,5 +1,4 @@
 'use strict';
-
 var http = require('http');
 var path = require('path');
 var webpack = require('webpack');
@@ -9,9 +8,15 @@ var webpackHotMiddleware = require("webpack-hot-middleware")
 var argv = require('yargs').argv;
 var webpackConfig = require('./webpack.config');
 
+require('babel-register');
+
+// import d from './plugins/htmlPlugin'
 // console.log(`pwd:${process.cwd()}`)
 // console.log(" \n argv:",argv);
 
+// console.warn('     ---->g:',d);
+
+console.log(' dddddd')
 function handleConfig(config) {
 
     let localConfig = Object.create(config);

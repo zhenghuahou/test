@@ -1,0 +1,10 @@
+{
+    "1":{
+      "filename": "_index.html",
+      "chunks":["common","test"],
+      "template": "./demo/test.html"
+    },
+    "2":{
+      "filename": "a.html"
+    }
+}

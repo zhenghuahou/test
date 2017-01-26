@@ -1,4 +1,5 @@
 import './css/pageA.css'
 // import './app'
 import './b'
-console.log("pageA.js");
+console.log("page 版本A .js");
+  

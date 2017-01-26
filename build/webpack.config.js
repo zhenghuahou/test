@@ -4,20 +4,37 @@ var webpack = require("webpack");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var OpenBrowserPlugin = require('open-browser-webpack-plugin');
-var ExtendedDefinePlugin = require('./plugins/extended-define-webpack-plugin');
 
-// import d,{config as htmlPluginConfig,htmlPlugin} from  './htmlplugin.js'; //ok
-import d,{htmlPlugin} from  './htmlplugin.js';
+import d,{htmlPlugin} from  './plugins/htmlPlugin/index.js';
 
+// async function ff(){
+//     console.log('dd',arguments);
+// }
+
+// ff();
+
+function HelloWorldPlugin(options) {
+  // Setup the plugin instance with options...
+}
+
+HelloWorldPlugin.prototype.apply = function(compiler) {
+   // console.log(' ***** compiler:',compiler);
+  compiler.plugin('done', function() {
+    console.log('Hello World:',arguments); 
+  });
+};
+
+
+
+console.dir(require);
 
 module.exports = {
 	watch: true,
     entry: {
         "app":["./src/app.js"],
-        "test": './src/pageA.js',
-        "pageB": './src/pageB.js',
-        "async": './src/async.js'
+        // "test": './src/pageA.js',
+        // "pageB": './src/pageB.js',
+        // "async": './src/async.js'
     },
     output: {
         path: path.resolve(process.cwd(),'dist/'),
@@ -99,38 +116,13 @@ module.exports = {
           SOME_BOOLEAN: true
         }),
 
+        new HelloWorldPlugin({options: true}),
 
-        ...htmlPlugin(),
+        // ...htmlPlugin(),
 
 
-        // new ExtendedDefinePlugin({
-        //   'process.env': {
-        //     NODE_ENV: 'production'
-        //   },
-        //   'aa.bb':{
-        //     huazi:"huazi"
-        //   },
-        //   TWO: '1 + 1',
-        //   DESCRIPTION: 'This Is The Test Text.',
-        //   cb:'(function(){console.warn("this:",this,"cb");}())',
-        //   SOME_BOOLEAN: true
-        // })
 
-        // new ExtendedDefinePlugin({
-        //   'process.env': {
-        //     NODE_ENV: JSON.stringify('production')
-        //   },
-        //   'aa.bb':{
-        //     huazi:JSON.stringify("huazi")
-        //   },
-        //   TWO: '1 + 1',
-        //   DESCRIPTION: JSON.stringify('This Is The Test Text.'),
-        //   SOME_BOOLEAN: true
-        // })
-
-        //自动打开指定页面
-        // new OpenBrowserPlugin({
-        //     url: 'http://www.github5.com:9999/test/demo'
-        // })
+       
     ]
 };
+

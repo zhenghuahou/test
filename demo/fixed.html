@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+  <html><head>
+  <title>fixed实践</title>
+  <meta charset="UTF-8">
+  <style>
+  body{
+    color: #fff;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+  }
+    .box{
+      /*transform: rotate(0deg);*/ /*后代元素的fixed失效 */
+      /*transform: scale(1.0);*//* 后代元素的fixed失效 */
+      /*transform: none;*/ /* 后代元素的fixed起作用，不会失效*/
+      background: #360;
+      height: 200px;
+    }
+    .s{
+      /* position: static; */ /* 紧邻的兄弟元素之间的margin会合并*/
+      /*position: relative;*/ /* 紧邻的兄弟元素之间的margin会合并*/
+      /*position: absolute;*/  /* 紧邻的兄弟元素之间的margin不会合并*/
+      /*position: fixed; *//* 紧邻的兄弟元素之间的margin不会合并*/
+      position: fixed;
+      left:0;
+      margin-top: 50px;
+    }
+  </style>
+  </head>
+    <body class='box'>
+      <p style="margin-bottom: 120px;">
+        <input type="text" id="text" value="123">
+      </p>
+      <div>
+          <p class="s">
+            <select name="" id="select">
+              <option value="1">1</option>
+              <option value="2">11</option>
+              <option value="3">111</option>
+            </select>
+          </p>
+      </div>
+      Values
+      <p>static
+      This keyword lets the element use the normal behavior. That is, it is laid out in its current position in the flow.  The top, right, bottom, left and z-index properties do not apply.</p>
+      <p>relative
+      This keyword lays out all elements as though the element were not positioned, and then adjusts the element's position, without changing layout (and thus leaving a gap for the element where it would have been had it not been positioned). The effect of position:relative on table-*-group, table-row, table-column, table-cell, and table-caption elements is undefined.</p>
+      <p>absolute
+      Do not leave space for the element. Instead, position it at a specified position relative to its closest positioned ancestor if any, or otherwise relative to the initial containing block. Absolutely positioned boxes can have margins, and they do not collapse with any other margins.</p>
+      <p>fixed
+      Do not leave space for the element. Instead, position it at a specified position relative to the screen's viewport and don't move it when scrolled. When printing, position it at that fixed position on every page. This value always creates a new stacking context. When an ancestor has the transform property set to something different from none then this ancestor is used as container instead of the viewport (see CSS Transforms Spec).</p>
+      <p>sticky 
+      The box position is calculated according to the normal flow (this is called the position in normal flow). Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes. When a box B is stickily positioned, the position of the following box is calculated as though B were not offset. The effect of ‘position: sticky’ on table elements is the same as for ‘position: relative’.</p>
+       Values
+      <p>static
+      This keyword lets the element use the normal behavior. That is, it is laid out in its current position in the flow.  The top, right, bottom, left and z-index properties do not apply.</p>
+      <p>relative
+      This keyword lays out all elements as though the element were not positioned, and then adjusts the element's position, without changing layout (and thus leaving a gap for the element where it would have been had it not been positioned). The effect of position:relative on table-*-group, table-row, table-column, table-cell, and table-caption elements is undefined.</p>
+      <p>absolute
+      Do not leave space for the element. Instead, position it at a specified position relative to its closest positioned ancestor if any, or otherwise relative to the initial containing block. Absolutely positioned boxes can have margins, and they do not collapse with any other margins.</p>
+      <p>fixed
+      Do not leave space for the element. Instead, position it at a specified position relative to the screen's viewport and don't move it when scrolled. When printing, position it at that fixed position on every page. This value always creates a new stacking context. When an ancestor has the transform property set to something different from none then this ancestor is used as container instead of the viewport (see CSS Transforms Spec).</p>
+      <p>sticky 
+      The box position is calculated according to the normal flow (this is called the position in normal flow). Then the box is offset relative to its flow root and containing block and in all cases, including table elements, does not affect the position of any following boxes. When a box B is stickily positioned, the position of the following box is calculated as though B were not offset. The effect of ‘position: sticky’ on table elements is the same as for ‘position: relative’.</p>
+    </body>
+</html>

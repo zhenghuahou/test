@@ -8,7 +8,7 @@ var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var ExtendedDefinePlugin = require('./plugins/extended-define-webpack-plugin');
 
 // import d,{config as htmlPluginConfig,htmlPlugin} from  './htmlplugin.js'; //ok
-import d,{htmlPlugin} from  './htmlplugin.js';
+import test,{htmlPlugin} from  './htmlplugin.js';
 
 
 module.exports = {
@@ -68,7 +68,6 @@ module.exports = {
 	    // Webpack 2.0 fixed this mispelling
 	    // new webpack.optimize.OccurrenceOrderPlugin(),
 	    // new webpack.HotModuleReplacementPlugin(), //这个插件会向生产的代码中注入热更新相关的js代码,所以在 dev-server.js 开启热加载的时候在手动添加这个plugin
-
 
 	    new webpack.NoErrorsPlugin(),
 	    new CleanWebpackPlugin(['dist'] ,{

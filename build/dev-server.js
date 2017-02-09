@@ -1,6 +1,7 @@
 'use strict';
 
 var http = require('http');
+var ip = require('ip');
 var path = require('path');
 var webpack = require('webpack');
 var express = require('express');
@@ -8,9 +9,9 @@ var webpackDevMiddleWare = require("webpack-dev-middleware");
 var webpackHotMiddleware = require("webpack-hot-middleware")
 var argv = require('yargs').argv;
 var webpackConfig = require('./webpack.config');
+import util from './util';
 
-// console.log(`pwd:${process.cwd()}`)
-// console.log(" \n argv:",argv);
+var {log} = util;
 
 function handleConfig(config) {
 
@@ -76,11 +77,9 @@ app.use(webpackHotMiddleware(compiler, {
 //   res.sendFile(process.cwd() + '/demo/index.html');
 // });
 
-
 // app.get("/test", function(req, res) {
 //   res.sendFile(process.cwd() + '/demo/test.html');
 // });
-
 
 // app.get("/gen", function(req, res) {
 //   res.sendFile(process.cwd() + '/demo/generator.html');
@@ -89,8 +88,7 @@ app.use(webpackHotMiddleware(compiler, {
 if (require.main === module) {
   var server = http.createServer(app);
 
-  // console.log("process.env.PORT," process.env.npm_package_config_port:",process.env.npm_package_config_port);
   server.listen(process.env.npm_package_config_port || argv.port || 8888, function() {
-    console.log("Listening on %j", server.address());
+    log(`listening on:${ip.address()}:${server.address().port}`)
   });
 }

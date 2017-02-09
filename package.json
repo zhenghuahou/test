@@ -36,7 +36,7 @@
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.26.0",
+    "html-webpack-plugin": "^2.28.0",
     "monkey-hot-loader": "0.0.3",
     "node-sass": "^3.10.1",
     "open-browser-webpack-plugin": "0.0.3",
@@ -50,6 +50,7 @@
   },
   "dependencies": {
     "express": "^4.14.0",
-    "vue-resource": "^1.0.3"
+    "mint-ui": "^2.1.1",
+    "vue": "^2.1.10"
   }
 }

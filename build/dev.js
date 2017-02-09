@@ -1,10 +1,7 @@
 var gulp = require("gulp");
 var webpack = require("webpack");
 var chalk = require("chalk");
-var util = require('util');
 var webpackConfig = require('./webpack.config');
-
-console.log(' util:',util);
 
 gulp.task("default", function(callback) {
 

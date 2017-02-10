@@ -10,8 +10,11 @@ var ExtendedDefinePlugin = require('./plugins/extended-define-webpack-plugin');
 // import d,{config as htmlPluginConfig,htmlPlugin} from  './htmlplugin.js'; //ok
 import test,{htmlPlugin} from  './htmlplugin.js';
 
+const vuxLoader = require('vux-loader')
 
-module.exports = {
+console.log(' vuxLoader:',vuxLoader);
+
+let webpackConfig =  {
 	watch: true,
     entry: {
         "app":["./src/app.js"],
@@ -31,7 +34,10 @@ module.exports = {
         // filename: "[name].[chunkhash].js"
     },
     module: {
-        loaders: [
+        loaders: [{
+              test: /vuxx.src.*?js$/, //匹配 vuxx任意字符src任意字符js,即匹配vuxx/src.js,vuxx/srcXXX.js,vuxx/src/目录下面的js文件
+              loader: 'babel?cacheDirectory=true'
+            },
             {
             	test: /.js/, 
             	exclude: /node_modules/, 
@@ -133,3 +139,12 @@ module.exports = {
         // })
     ]
 };
+
+module.exports = vuxLoader.merge(webpackConfig, {
+  options: {},
+  plugins: [
+    {
+      name: 'vux-ui'
+    }
+    ]
+});

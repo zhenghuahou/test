@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html><head>
+  <title>深入剖析JavaScript的深复制--实践</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<body>
+<div class="box">
+ 原文网址： http://jerryzou.com/posts/dive-into-deep-clone-in-javascript/
+</div>
+
+<script>  
+  var class2type = {};
+  var toString = class2type.toString;
+  function type(obj) {
+    return obj == null ? String(obj) :
+      class2type[toString.call(obj)] || "object"
+  }
+
+  function isFunction(value) { return type(value) == "function" }
+  function isWindow(obj)     { return obj != null && obj == obj.window }
+  function isDocument(obj)   { return obj != null && obj.nodeType == obj.DOCUMENT_NODE }
+  // function isObject(obj)     { return type(obj) == "object" }
+  function isObject(obj)     { return Object.prototype.toString.call({})=="[object Object]"}
+
+  function isPlainObject(obj) {
+    return isObject(obj) && !isWindow(obj) && Object.getPrototypeOf(obj) == Object.prototype
+  }
+
+function defineMethods(protoArray, nameToFunc) {
+    protoArray.forEach(function(proto) {
+        var names = Object.keys(nameToFunc),
+            i = 0;
+
+        for (; i < names.length; i++) {
+            Object.defineProperty(proto, names[i], {
+                enumerable: false,
+                configurable: true,
+                writable: true,
+                value: nameToFunc[names[i]]
+            });
+        }
+    });
+}
+
+/*=====================================*
+ * Array.prototype
+ * - $clone()
+*=====================================*/
+
+defineMethods([ Array.prototype ], {
+    '$clone': function (srcStack, dstStack) {
+        var thisArr = this.valueOf(),
+            newArr = [],
+            keys = Object.keys(thisArr),
+            index,
+            element;
+    
+        srcStack = srcStack || [];
+        dstStack = dstStack || [];
+        srcStack.push(this);
+        dstStack.push(newArr);
+    
+        for (var i = 0; i < keys.length; i++) {
+            element = thisArr[keys[i]];
+            if (element === undefined || element === null) {
+                newArr[keys[i]] = element;
+            }else if (!(typeof prop ==='function')) {
+                if (isPlainObject(element)) {
+                    index = srcStack.lastIndexOf(element);
+                    if (index > 0) {
+                        newArr[keys[i]] = dstStack[index];
+                        continue;
+                    }
+                }
+            }
+            newArr[keys[i]] = element.$clone(srcStack, dstStack);
+        }
+        return newArr;
+    }
+});
+
+
+defineMethods([ Object.prototype ], {
+    '$clone': function (srcStack, dstStack) {
+        var obj = Object.create(Object.getPrototypeOf(this)),
+            keys = Object.keys(this),
+            index,
+            prop;
+
+        srcStack = srcStack || [];
+        dstStack = dstStack || [];
+        srcStack.push(this);
+        dstStack.push(obj);
+        console.warn('this:',this,'obJ:',obj,' srcStack:',srcStack,' dstStack:',dstStack)
+
+        for (var i = 0; i < keys.length; i++) {
+            prop = this[keys[i]];
+            if (prop === null || prop === undefined) {
+                obj[keys[i]] = prop;
+            }
+            else if (!(typeof prop ==='function')) {
+                if (isPlainObject(prop)) {
+                    index = srcStack.lastIndexOf(prop);
+                    console.info(prop,' index:',index,srcStack.length);
+                    if (index > 0) {
+                        obj[keys[i]] = dstStack[index];
+                        continue;
+                    }
+                }
+                console.log(' --->pop:',prop,' keys:',keys,' i:',i,' keys[i]:',keys[i]);
+
+                obj[keys[i]] = prop.$clone(srcStack, dstStack);
+            }else{
+               obj[keys[i]] = prop;
+            }
+        }
+        return obj;
+    }
+});
+
+
+/*=====================================*
+ * Date.prototype
+ * - $clone
+ *=====================================*/
+
+defineMethods([ Date.prototype ], {
+    '$clone': function() { return new Date(this.valueOf()); }
+});
+
+/*=====================================*
+ * RegExp.prototype
+ * - $clone
+ *=====================================*/
+
+defineMethods([ RegExp.prototype ], {
+    '$clone': function () {
+        var pattern = this.valueOf();
+        var flags = '';
+        flags += pattern.global ? 'g' : '';
+        flags += pattern.ignoreCase ? 'i' : '';
+        flags += pattern.multiline ? 'm' : '';
+        return new RegExp(pattern.source, flags);
+    }
+});
+
+defineMethods([
+    Number.prototype,
+    Boolean.prototype,
+    String.prototype
+], {
+    '$clone': function() { console.error('$clone:',this);return this.valueOf(); }
+});
+
+
+function X() {
+    this.x = 5;
+    this.arr = [1,2,3];
+}
+var obj = { aa:X, d: new Date(),e:{'xx':2},x: new X(),arr: [21,22,23] },
+    obj2,
+    clone;
+
+obj.x.xx = new X();
+obj.arr.testProp = "test";
+clone = obj.$clone();
+
+JSON.parse(null) //null
+JSON.stringify(function(){}) //结果：undefined
+JSON.parse(undefined) //Unexpected token u in JSON at position 0
+</script>
+
+</body>
+</html>

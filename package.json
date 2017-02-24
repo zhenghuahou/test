@@ -28,6 +28,7 @@
     "open": "opener http://localhost:8080",
     "predev": "babel-node build/predev.js",
     "dev": "babel-node build/dev-server.js WEBPACK_CONFIG=./build/webpack.config.js --env dev --port 8888",
+    "devtool": "babel-node build/devtool.js  --env dev --port 8888",
     "postdev": "echo 当dev执行完毕会执行npm run postdev,但是如果npm run dev里面包含有watch功能，则npm run dev命令会一直执行，从而导致npm run postdev不会被执行"
   },
   "devDependencies": {
@@ -43,6 +44,7 @@
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.10.0",
     "html-webpack-plugin": "^2.28.0",
     "ip": "^1.1.4",
     "monkey-hot-loader": "0.0.3",

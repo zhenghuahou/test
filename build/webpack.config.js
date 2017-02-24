@@ -6,16 +6,10 @@ var CopyWebpackPlugin = require("copy-webpack-plugin");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 var ExtendedDefinePlugin = require('./plugins/extended-define-webpack-plugin');
-
-// import d,{config as htmlPluginConfig,htmlPlugin} from  './htmlplugin.js'; //ok
-import test,{htmlPlugin} from  './htmlplugin.js';
-
-const vuxLoader = require('vux-loader')
-
-console.log(' vuxLoader:',vuxLoader);
+var  htmlPlugin = require('./plugins/htmlPlugin').htmlPlugin;
 
 let webpackConfig =  {
-	watch: true,
+	// watch: false,
     entry: {
         "app":["./src/app.js"],
         "test": './src/pageA.js',
@@ -90,7 +84,6 @@ let webpackConfig =  {
             minChunks: 2
             // chunks: ["pageA", "pageB"],
         }),
-
         
         new webpack.DefinePlugin({
           'process.env': {
@@ -104,47 +97,12 @@ let webpackConfig =  {
           SOME_BOOLEAN: true
         }),
 
-
         ...htmlPlugin(),
-
-
-        // new ExtendedDefinePlugin({
-        //   'process.env': {
-        //     NODE_ENV: 'production'
-        //   },
-        //   'aa.bb':{
-        //     huazi:"huazi"
-        //   },
-        //   TWO: '1 + 1',
-        //   DESCRIPTION: 'This Is The Test Text.',
-        //   cb:'(function(){console.warn("this:",this,"cb");}())',
-        //   SOME_BOOLEAN: true
-        // })
-
-        // new ExtendedDefinePlugin({
-        //   'process.env': {
-        //     NODE_ENV: JSON.stringify('production')
-        //   },
-        //   'aa.bb':{
-        //     huazi:JSON.stringify("huazi")
-        //   },
-        //   TWO: '1 + 1',
-        //   DESCRIPTION: JSON.stringify('This Is The Test Text.'),
-        //   SOME_BOOLEAN: true
-        // })
-
-        //自动打开指定页面
-        // new OpenBrowserPlugin({
-        //     url: 'http://www.github5.com:9999/test/demo'
-        // })
+      
     ]
 };
 
-module.exports = vuxLoader.merge(webpackConfig, {
-  options: {},
-  plugins: [
-    {
-      name: 'vux-ui'
-    }
-    ]
-});
+
+module.exports = webpackConfig;
+
+

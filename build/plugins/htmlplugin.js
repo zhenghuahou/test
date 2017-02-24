@@ -1,11 +1,9 @@
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const config = [{
       filename: 'index.html',
       chunks:['common','test'],
-      template: './demo/test.html'
-    },{
-      filename: 'a.html',
+      template: './demo/index.html'
     }
 ];
 
@@ -20,4 +18,5 @@ function htmlPlugin(){
 
 
 export {config,htmlPlugin}
-export default {}
+// export default {}
+

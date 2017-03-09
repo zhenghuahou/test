@@ -2,10 +2,12 @@
 var path = require("path");
 var webpack = require("webpack");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
-// var CopyWebpackPlugin = require("copy-webpack-plugin");
+var  ZipWebpackPlugin = require('zip-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ExtendedDefinePlugin = require('./plugins/extended-define-webpack-plugin');
 var htmlPlugin = require('./plugins/htmlPlugin').htmlPlugin;
+var myplugin = require('./plugins/myplugin.js');
+// var CopyWebpackPlugin = require("copy-webpack-plugin");
 
 
 let webpackConfig =  {
@@ -37,16 +39,23 @@ let webpackConfig =  {
                 loader: ExtractTextPlugin.extract('style','css')
                 // loaders: ['style', 'css']
             },{
+                test: /\.(png|jpg)(\?.+|$)/,
+                loader: 'file',
+                query: {
+                    name: '[name]_[sha512:hash:base64:7].[ext]',
+                }
+            },/*{
                 // test: /\.(png(\?\=a)|jpg(\?\=a))$/,
                 test: /\.(png|jpg)(\?.+|$)/,
                 loader: `${process.cwd()}/build/plugins/url-loader.js`,
+                loader: `${process.cwd()}/build/plugins/url-loader.js`,
                 query: {
-                    name: '[name]_url.[ext]',
+                    name: '[name]_[sha512:hash:base64:7].[ext]',
                     limit: 10001,
                     outputPath:'urlloader/',
                     publicPath:'http://10.7.248.201:8888/urlloader/'
                 }
-            }
+            }*/
         ]
     },
     // devtool: 'cheap-eval-source-map',
@@ -56,6 +65,8 @@ let webpackConfig =  {
     devtool: false,
 
     plugins:[
+        new myplugin(),
+
         //the name of the chunk
         // Webpack 1.0
         // new webpack.optimize.OccurenceOrderPlugin(),
@@ -87,7 +98,14 @@ let webpackConfig =  {
         ...htmlPlugin(),
          new ExtractTextPlugin('[name].css', {
             allChunks: true
-        })
+        }),
+        
+        // https://github.com/erikdesjardins/zip-webpack-plugin
+        new ZipWebpackPlugin({
+            path: '../zip', //relative (to Webpack output path)
+            filename: `test.zip`
+        }),
+
     ]
 };
 

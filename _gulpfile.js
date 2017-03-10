@@ -6,7 +6,7 @@ gulp.task('imagemini', function (done) {
     console.time('time');
     let t1 = +new Date;
     gulp.src('src/**/*.min.png')
-        .pipe(tinypng('app_key(去tinypng申请)'))
+        .pipe(tinypng('cNJZ3e97EZZWg9olNwloydhswxJsQAPx'))
         .pipe(gulp.dest('src'))
         .on('end',function(){
             let t2 = +new Date;

@@ -30,7 +30,7 @@
     "dev": "babel-node build/dev-server.js WEBPACK_CONFIG=./build/webpack.config.js --env dev --port 8888",
     "devtool": "babel-node build/devtool.js  --env dev --port 8888",
     "//": "npn run imagemin(使用gulp-tinypng图片压缩)",
-    "imagemin": "gulp",
+    "imagemin": "gulp --gulpfile build/task/imagemin.js --cwd ./  --silent",
     "//": "npn run imagemin(图片压缩)执行完之后执行npm run devtool",
     "prod":"npm run imagemin && npm run devtool",
     "postdev": "echo 当dev执行完毕会执行npm run postdev,但是如果npm run dev里面包含有watch功能，则npm run dev命令会一直执行，从而导致npm run postdev不会被执行"

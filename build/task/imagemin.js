@@ -6,7 +6,6 @@ var tinypng = require('gulp-tinypng');
 gulp.task('imagemini', function (done) {
     console.time('time');
     let t1 = +new Date;
-    // gulp.src('src/**/*.min.png')
     gulp.src('src/**/*.min.+(png|jpg|jpeg|gif)')
         .pipe(tinypng('app_key(去tinypng网站申请)'))
         .pipe(gulp.dest('src'))

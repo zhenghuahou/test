@@ -12,6 +12,7 @@ classes
 .settings
 .classpath
 .project
+.gulp
 
 
 *.properties

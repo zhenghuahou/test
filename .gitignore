@@ -22,6 +22,8 @@ logs
 dist
 uploadzip
 
+zip
+
 npm-debug.log
 node_modules
 

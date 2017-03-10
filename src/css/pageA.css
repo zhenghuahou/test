@@ -26,8 +26,6 @@ p{
 	line-height: 1.8;
 }
 
-
-
 .pic1,.pic2{
 	width: 50px;
 	height: 50px;
@@ -36,12 +34,18 @@ p{
 }
 
 .pic1{
-	/*background: url(../img/p2.png) center top no-repeat;*/
+	background: url(../pic/test.min.png) center top no-repeat;
+	background: url(../pic/w1.png) center top no-repeat;
 }
 
 .pic2{
-	background: url(../pic/qqd-weixin.png) center top no-repeat;
+	background: url(../pic/w2.min.png) center top no-repeat;
 }
+
+.pic3{
+	background: url(../pic/partnermin.png) center top no-repeat;
+}
+
 
 
 

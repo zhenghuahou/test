@@ -65,8 +65,6 @@ let webpackConfig =  {
     devtool: false,
 
     plugins:[
-        new myplugin(),
-
         //the name of the chunk
         // Webpack 1.0
         // new webpack.optimize.OccurenceOrderPlugin(),
@@ -99,6 +97,7 @@ let webpackConfig =  {
          new ExtractTextPlugin('[name].css', {
             allChunks: true
         }),
+        new myplugin(),
         
         // https://github.com/erikdesjardins/zip-webpack-plugin
         new ZipWebpackPlugin({

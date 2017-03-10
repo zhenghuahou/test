@@ -2,8 +2,8 @@ import './css/pageA.css'
 var tt1 = require('./img/p1.png'); //url-loader(-->base64)
 
 var tt2 = require('./img/p2.png?nobase'); //命名是按照url-loader来的,最终经过file-loader
-var banner = require('./pic/banner.min.png'); //命名是按照url-loader来的,最终经过file-loader
-var partnermin = require('./pic/partnermin.png'); //命名是按照url-loader来的,最终经过file-loader
+var banner = require('./banner.min.png'); //命名是按照url-loader来的,最终经过file-loader
+// var partnermin = require('./pic/partnermin.png'); //命名是按照url-loader来的,最终经过file-loader
 // console.log('   tt:',tt1);
 // console.log('   tt2:',tt2);
 

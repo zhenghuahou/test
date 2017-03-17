@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>执行 innerHTML 里的 script</title>
+  <script>
+    pageConfig = {};
+  </script>
+</head>
+
+<body>
+  https://juejin.im/post/58cb779bb123db0053218c09?utm_source=gold_browser_extension
+  <div id="box" class="box">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+  <div id="test">Hello HTML</div>
+  <script>
+    document.getElementById('test').innerHTML = 'Hello JS';
+  </script>
+  <script src='./js/script.js'></script>
+
+
+  <script>
+    function runScript(script) {
+      return new Promise((reslove, rejected) => {
+        // 直接 document.head.appendChild(script) 是不会生效的，需要重新创建一个
+        const newScript = document.createElement('script');
+        // 获取 inline script
+        newScript.innerHTML = script.innerHTML;
+        // 存在 src 属性的话
+        const src = script.getAttribute('src');
+        if (src) newScript.setAttribute('src', src);
+        console.warn(' sec:',src);
+        // script 加载完成和错误处理
+        newScript.onload = () => reslove();
+        newScript.onerror = err => rejected();
+        document.head.appendChild(newScript);
+        document.head.removeChild(newScript);
+        if (!src) {
+          // 如果是 inline script 执行是同步的
+          reslove();
+        }
+      }).catch(function(error) {
+        // 处理 getJSON 和 前一个回调函数运行时发生的错误
+        console.log('发生错误！', error);
+      });
+    }
+
+    function setHTMLWithScript(container, rawHTML) {
+      container.innerHTML = rawHTML;
+      const scripts = container.querySelectorAll('script');
+
+      console.log(' scripts:', scripts);
+      return Array.prototype.slice.apply(scripts).reduce((chain, script) => {
+        console.warn(" chain:", chain, ' script:', script);
+        return chain.then(() => runScript(script)).catch(function(e){
+          console.error('  sgsdfgsdgfsdgsdgsdgfsgfsf',e)
+        });
+      }, Promise.resolve('aaa'));
+    }
+
+    var tagString = "<div>I am a div node</div><script>console.info('我是test',+new Date)<\/script>";
+    tagString += "<script src='http://10.7.248.201:8000/common.js'><\/script>";
+    tagString += "<script src='./js/script.js'><\/script>";
+    setHTMLWithScript(document.body, tagString);
+  </script>
+
+</body>
+
+</html>

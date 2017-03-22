@@ -8,7 +8,7 @@
     <body>
         <div class="box">
             <img src="" alt="test1">
-            <img src="" alt="test2" alt="" class="my-image">
+            <img src="" alt="test2" class="my-image">
         </div>
 
         <script>
@@ -17,7 +17,7 @@
             // var myRequest = new Request('flowers.jpg');
             var test = fetch(myRequest).then(function (response) {
                 // console.warn(' response:',response,response.blob());
-                console.warn(' response:', response, );
+                console.error(' response:', response, );
                 // console.warn('response.text():',response.text());
                 return response.blob();
                 // return response.text();
@@ -25,21 +25,20 @@
             var api = test.then(function (response) {
 
                 objectURL = URL.createObjectURL(response);
-                console.info(' resolved 第二个then:', response, ' objectURL:', objectURL,);
+                console.error(' resolved 第二个then:', response, ' objectURL:', objectURL,);
 
                 myImage.src = objectURL;
             }, function () {
-                console.warn(" 现在的api wonderful", arguments)
+                console.error(" 现在的api wonderful", arguments)
             }).catch(function () {
-                console.warn(' 我是catch！', arguments);
+                console.error(' 我是catch！', arguments);
             });
-
         </script>
         <script>
-            var img = document.querySelector('.my-image');
+                    var img = document.querySelector('.my-image');
     fetch('https://upload.wikimedia.org/wikipedia/commons/7/77/Delete_key1.jpg')
         .then(res => {
-            console.log(' res【1】:',res);
+            console.warn(' res【1】:',res);
             return res.blob()
             // return res.text()
         })
@@ -49,19 +48,18 @@
 
             img.src = objectURL;
     });
-
         </script>
         <script>
-            // var result = fetch('https://api.github.com')
-    // result.then(function(response) {
-    //   console.log('response', response)
-    //   console.log('header', response.headers.get('Content-Type'))
-    //   return response.text()
-    // }).then(function(text) {
-    //   console.log('got text', text)
-    // }).catch(function(ex) {
-    //   console.log('failed', ex)
-    // })
+            var result = fetch('https://api.github.com')
+            result.then(function (response) {
+                console.info('response', response)
+                console.info('header', response.headers.get('Content-Type'))
+                return window.response = response;
+            }).then(function (text) {
+                console.info('got text', text, text.blob())
+            }).catch(function (ex) {
+                console.info('failed', ex)
+            })
         </script>
 
     </body>

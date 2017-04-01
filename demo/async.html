@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html><head>
-  <title>async案例</title>
-  <meta charset="UTF-8">
-  </head>
+<html>
+
+<head>
+    <title>async案例</title>
+    <meta charset="UTF-8">
+</head>
+
 <body>
     原文链接：https://juejin.im/post/58cf180b0ce4630057d6727c
-<script>
-    // var output = function (i) {
+    <script>
+        // var output = function (i) {
     //     setTimeout(function() {
     //         console.log(new Date, i);
     //     }, 1000);
@@ -17,12 +20,12 @@
     // }
 
     // console.log(new Date, i);
-</script>
-<script>
-    //es6 promise
+    </script>
+    <script>
+        //es6 promise
     //代码执行时，立即输出 0，之后每隔 1 秒依次输出 1,2,3,4
     // var p =  Promise.resolve();
-   
+
     // function test(i){
     //     p = p.then((resolve)=>{
     //         // this:window
@@ -46,62 +49,112 @@
     //     },1000);
     //     return ['h','i'];
     // })
-</script>
-<script>
-    //es7 async
-    //代码执行时，立即输出 0，之后每隔 1 秒依次输出 1,2,3,4
-    var p =  Promise.resolve();
-    var i = 0;
-    // console.error('时间：',+new Date);
+    </script>
+    <script>
+        //es7 async
+        //代码执行时，立即输出 0，之后每隔 1 秒依次输出 1,2,3,4
+        var p = Promise.resolve();
+        var i = 0;
+        // console.error('时间：',+new Date);
 
-    function sleep(timeMs,flag){
-        return new Promise((resolve,reject)=>{
-             setTimeout(()=>{
-                flag && console.log(' sleep+++++++++',+new Date);
-                resolve('传递给then的参数 i:'+i);
-            },timeMs)
-        });
-       
-    }
+        function sleep(timeMs, flag) {
+            console.warn(' falg:', flag)
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    flag && console.log(' sleep+++++++++', +new Date);
+                    resolve('传递给then的参数 i:' + i);
+                }, timeMs)
+            });
 
-    function aa(){
-        // return [23]
-        return Promise.resolve('aaa');
-    }
-   
-    async function test(i){
-        p = await sleep(1000);
-    }
-
-    ;( async function(){
-        for (; i < 3; i++) {
-            await test(i)
-            console.error('test函数:',+new Date, i,' p:',p,typeof p);
         }
 
-       
-        (async function (){
-            console.info('ttttttttttttttt111111',+new Date)
-             await sleep(1000);//不会阻塞下面的代码执行
-        })();
+        function aa() {
+            // return [23]
+            return Promise.resolve('aaa');
+        }
 
-        (async function  (){
-            console.info('ttttttttttttttt222222',+new Date)
-             await sleep(1000);//不会阻塞下面的代码执行
-        })();
-        
-        (async function  (){
-            console.info('ttttttttttttttt33333',+new Date)
-             window.aa = await aa();//不会阻塞下面的代码执行,window.aa的值为'aaa'字符串
-        })();
-        window.bb = aa();//bb为promise对象
+        async function test(i) {
+            p = await sleep(1000);
+        }
 
-        await sleep(2000,true);//会阻塞下面代码的执行
-        await sleep(2000,true);
-        console.warn(+new Date, i,' p:',p,typeof p);//1
-       
+        ; (async function () {
+            for (; i < 3; i++) {
+                await test(i)
+                console.error('test函数:', +new Date, i, ' p:', p, typeof p);
+            }
 
-    })();
-</script>
+
+            async function tt1() {
+                console.info('ttttttttttttttt111111', +new Date)
+                await sleep(3000, 'tt1');//不会阻塞下面的代码执行
+            };
+
+            async function tt2() {
+                console.info('ttttttttttttttt222222', +new Date)
+                await sleep(3000, 'tt2');//不会阻塞下面的代码执行
+            };
+
+            async function tt3() {
+                console.info('ttttttttttttttt33333', +new Date)
+                window.aa = await aa();//不会阻塞下面的代码执行,window.aa的值为'aaa'字符串
+            };
+            window.bb = aa();//bb为promise对象
+
+            tt1();
+            tt2()
+            tt3();
+
+            await sleep(2000, true);//会阻塞下面代码的执行
+            await sleep(2000, true);
+            console.warn(+new Date, i, ' p:', p, typeof p);//1
+
+
+        })();
+    </script>
+
+    <script>
+        //var ccc = (async function () {
+        //     function sleep(timeMs, flag) {
+        //         console.warn(' flag:', flag)
+        //         return new Promise((resolve, reject) => {
+        //             setTimeout(() => {
+        //                 flag && console.log(' sleep+++++++++', +new Date, flag);
+        //                 reject('传递给then的参数 i:' + flag);
+        //             }, timeMs)
+        //         });
+
+        //     }
+
+        //     function aa() {
+        //         // return [23]
+        //         return Promise.resolve('aaa');
+        //     }
+
+        //     async function tt1() {
+        //         console.info('ttttttttttttttt111111', +new Date)
+        //         await sleep(3000, 'tt1');//不会阻塞下面的代码执行
+        //     };
+
+        //     async function tt2() {
+        //         console.info('ttttttttttttttt222222', +new Date)
+        //         await sleep(2000, 'tt2');//不会阻塞下面的代码执行
+        //     };
+
+        //     async function tt3() {
+        //         console.info('ttttttttttttttt33333', +new Date)
+        //         window.aa = await aa();//不会阻塞下面的代码执行,window.aa的值为'aaa'字符串
+        //     };
+        //     window.bb = aa();//bb为promise对象
+
+        //     window.e1 = tt1().catch((e) => console.log('e1:', e));
+        //     window.e2 = tt2().catch((e) => console.log('e2:', e) || 12);
+        //     // tt3();
+        //     await sleep(6000, ' await1').catch((e => console.error('6000***e:', e)));//会阻塞下面代码的执行
+        //     await sleep(6000, ' await2')//会阻塞下面代码的执行
+        //     console.warn('111');
+
+        // })();
+    </script>
 </body>
+
 </html>

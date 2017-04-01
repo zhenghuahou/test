@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>数组随机排序</title>
+  <meta charset="utf-8">
+  <style>
+    #p1{
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+ <script type="text/javascript">
+    //性能尚可
+    // let n = 10000;
+    // let arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+    // let count = (new Array(arr.length)).fill(0);
+
+    // console.time('a');    
+    // for (let i = 0; i < n; i ++) {
+    //     arr.sort(() => Math.random() - 0.5);
+    //     count[arr.indexOf('a')]++;
+    // }
+    // console.timeEnd('a');   
+    // console.log(count);
+     
+ </script>
+ <script type="text/javascript">
+    // 性能最差
+    // function shuffle(arr) {
+    //     let new_arr = arr.map(i => ({v: i, r: Math.random()}));
+    //     new_arr.sort((a, b) => a.r - b.r);
+    //     window.t= [...new_arr.map(i => i.v)]
+    //     window.t1 = t[0];
+    //     // console.warn(' ------>',...new_arr.map(i => i.v));
+    //     arr.splice(0, arr.length, ...new_arr.map(i => i.v));
+    // }
+     
+    // let a = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+    // let n = 10000;
+    // let count = (new Array(a.length)).fill(0);
+    // console.time('b');   
+    // for (let i = 0; i < n; i ++) {
+    //     shuffle(a);
+    //     count[a.indexOf('a')]++;
+    // }
+    // console.timeEnd('b');
+    // console.log(count);
+
+ </script>
+ <script type="text/javascript">
+     //性能最好
+    function shuffle(arr) {
+        let i = arr.length;
+        while (i) {
+            // console.info(' i:',i);//输出console，明显影响执行效率
+            let j = Math.floor(Math.random() * i--);
+            [arr[j], arr[i]] = [arr[i], arr[j]];
+        }
+    }
+
+    let a = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'];
+    let n = 10000;
+    let count = (new Array(a.length)).fill(0);
+    console.time('c');   
+    for (let i = 0; i < n; i ++) {
+        shuffle(a);
+        count[a.indexOf('a')]++;
+    }
+    console.timeEnd('c');
+    console.log(count);
+
+ </script>
+</body>
+</html>

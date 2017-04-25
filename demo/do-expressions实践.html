@@ -83,6 +83,17 @@
     } catch(e){ return [12,45]; } })();
     console.warn(' tried:',tried,'test:',test,' stuff:',stuff);
     //tried: undefined test: undefined  stuff: [12, 45]
+
+
+    //ok
+     0,do {
+        try {
+      foo(0);
+    } catch (e) {
+        console.log('%c e:'+e,"color:#360;font-size:40px");
+    //   throw e
+    }};
+
  </script>
 </body>
 </html>

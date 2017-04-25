@@ -62,7 +62,27 @@
     } //  `do`-`while` loop
     while (console.log('random1'), Math.random() < 0.8); 
     // logs at least one pair of 'lol' and 'random' followed by a final 'random'
+ </script>
+ <script>
+    let tried = do {
+        try {
+      foo(0);
+    } catch (e) {
+        console.log('%c e:'+e,"color:#360;font-size:40px");
+    //   throw e
+        12
+    }};
 
+     let test = do { try {
+       f()
+     } catch (e) { 0 } }
+
+
+    let stuff = (()=>{ try {
+       return f();
+    } catch(e){ return [12,45]; } })();
+    console.warn(' tried:',tried,'test:',test,' stuff:',stuff);
+    //tried: undefined test: undefined  stuff: [12, 45]
  </script>
 </body>
 </html>

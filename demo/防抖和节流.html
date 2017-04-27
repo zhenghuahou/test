@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html><head>
+  <title>防抖和节流案例</title>
+  <meta charset="UTF-8">
+  <style>
+      *{margin:0;padding: 0;}
+      body{height: 20000px;background: #ccc;}
+
+  </style>
+  </head>
+<body>
+<script>
+// 防抖动函数
+// function debounce(func, wait, immediate) {
+//     var timeout;
+//     return function() {
+//         var context = this, args = arguments;
+//         var later = function() {
+//             timeout = null;
+//             console.warn(" 防抖动函数 03(later):",`timeout:${timeout};!immediate:${!immediate}`,+new Date)
+//             if (!immediate) func.apply(context, args);
+//         };
+        
+//         var callNow = immediate & !timeout;
+//         console.warn(" 防抖动函数 01:",`timeout:${timeout};callNow:${callNow}`)
+//         clearTimeout(timeout);
+//         timeout = setTimeout(later, wait);
+//         console.info(" 防抖动函数 02:",`timeout:${timeout};callNow:${callNow}`,+new Date)
+//         if (callNow) func.apply(context, args);
+//     };
+// };
+ 
+// var myEfficientFn = debounce(function() {
+//     console.error(' 滚动中的真正的操作')//1
+// }, 2500);//滚动过程不会执行later，滚动结束2500ms后执行later函数
+// // var myEfficientFn = debounce(function() {
+// //     console.error(' 滚动中的真正的操作')
+// // }, 2500,true);//刚开始滚动时立马执行func回调函数(1处的函数)，滚动过程不执行later函数,滚动结束执行later一次
+ 
+// // 绑定监听
+// window.addEventListener('scroll', myEfficientFn);
+
+</script>
+
+
+<script>
+    // function throttle(func, wait, mustRun) {
+    //     var timeout,
+    //         startTime = new Date();
+
+    //     return function() {
+    //         var context = this,
+    //             args = arguments,
+    //             curTime = new Date();
+
+    //         clearTimeout(timeout);
+    //         // 如果达到了规定的触发时间间隔，触发 handler
+    //         if(curTime - startTime >= mustRun){
+    //              console.error(' 将要执行回调函数:','startTime:',+startTime,'curTime:',+curTime,(+curTime)-(+startTime));
+    //             func.apply(context,args);
+    //             startTime = curTime;
+    //         // 没达到触发间隔，重新设定定时器
+    //         }else{
+    //             timeout = setTimeout(func, wait);
+    //              console.info(' timeout',timeout,'startTime:',+startTime,'curTime:',+curTime,(+curTime)-(+startTime))
+
+    //         }
+    //     };
+    // };
+    // // 实际想绑定在 scroll 事件上的 handler
+    // function realFunc(){
+    //     console.warn("Success 回调函数被调用 当前时间",+new Date);
+    // }
+    // // 采用了节流函数
+    // window.addEventListener('scroll',throttle(realFunc,500,1000));
+
+</script>
+
+<script>
+    var ticking = false; // rAF 触发锁
+
+function onScroll(){
+  if(!ticking) {
+    let requestID =  requestAnimationFrame(realFunc);
+    window.cancelAnimationFrame(requestID);
+    ticking = true;
+    console.info("ticking:",ticking,+new Date,' requestID:',requestID);
+  }
+}
+
+function realFunc(){
+    // do something...
+    ticking = false;
+    console.warn("Success",ticking,+new Date);
+
+}
+// 滚动事件监听
+window.addEventListener('scroll', onScroll, false);
+
+</script>
+</body>
+</html>

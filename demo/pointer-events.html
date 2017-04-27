@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head>
+  <title>pointer-events案例</title>
+  <meta charset="UTF-8">
+  <style>
+      *{margin:0;padding: 0;}
+      body{height: 20000px;background: #ccc;}
+      ul{
+        pointer-events: none;
+      }
+      a[href="http://example.com"] {
+        pointer-events: none;
+      }
+      li{
+        padding: 50px;
+        background-color: #360;
+        float: left;
+        margin:50px;
+      }
+      a{
+        display: block;
+        height: 50px;
+      }
+      .test{
+        display: block;
+        background-color: #fc0;
+        height: 50px;
+        pointer-events: auto;
+      }
+  </style>
+  </head>
+<body>
+  <ul class='list'>
+    <li>
+      <a href="https://developer.mozilla.org/">MDN</a>
+    </li>
+    <li>
+      <a href="http://example.com">example.com</a>
+      <span class='test'>test</span>
+    </li>
+  </ul>
+  <script>
+  //addEventListener
+    document.querySelector('.list').addEventListener('click',function(e){
+      console.info('e:',e);
+    })
+  </script>
+</body>
+</html>

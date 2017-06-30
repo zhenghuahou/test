@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>执行 innerHTML 里的 script</title>
+  <meta charset="utf-8">
   <style>
     #p1{
       background-color: red;
@@ -11,7 +12,7 @@
 <body>
   <div id="box" class="box">
         <div id="div0">
-            <div id="div1"  onclick="console.info('div1 onclick')">
+            <div id="div1" >
                 <p id="p1" onclick="console.warn('p1 onclick')">
                   按钮p1
                 </p>

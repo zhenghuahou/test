@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>html5 实现文件下载</title>
+</head>
+<body style="height: 400px;">
+multiple属性可以让用户能选择多个文件 <input id="myfiles" multiple type="file">
+
+ <a href="./d1.html" download="./aa2.json">aa2.json</a><br>
+保存的文本:<input type="" name=""  class='test' value=aabb><br>
+保存的文件名:<input type="text" class="txtName"><br>
+<a href="javascript:;" class='saveAs'>保存到本地 </a>
+</body>
+
+<script>
+
+var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
+
+var click = function(node) {
+    var event = new MouseEvent("click");
+    console.warn(' event:',event);
+    node.dispatchEvent(event);
+}
+
+
+
+function reader(){
+    var blob = new Blob([document.querySelector('.test').value]);
+    var oFReader = new FileReader();
+    oFReader.readAsText(blob);
+    oFReader.onload = function(){
+        //arguments[0].target === this :true
+        console.log(' 文本框内容：',this.result)
+    }
+
+}
+
+
+document.querySelector('.saveAs').onclick = function(){
+    var blob = new Blob([document.querySelector('.test').value,' <',' add by huazi','>']);
+    var object_url = URL.createObjectURL(blob);
+    save_link.href = object_url;
+    save_link.download = document.querySelector('.txtName').value + ".txt";
+    console.log(' save_link:',save_link);
+    click(save_link);
+}
+
+
+var pullfiles=function(){ 
+    // 获取到input元素
+    var fileInput = document.querySelector("#myfiles");
+    var files = fileInput.files;
+    // 获取到所选文件数量 
+    var fl=files.length;
+    var i=0;
+    console.log( this === fileInput,+new Date)
+
+    while ( i < fl) {
+        var file = files[i];
+        console.log(file,file.name,+new Date);
+        var src=  window.URL.createObjectURL(files[i]);
+        console.warn(' src:',src);
+        i++;
+    }    
+}
+
+// 设置change事件处理函数
+document.querySelector("#myfiles").onchange=pullfiles;
+
+</script>
+
+</html>

@@ -19,6 +19,8 @@
 
 #####其他案例
 ***
-1.  案例一
- [仿andriod水波效果--在线代码预览](https://github.com/zhenghuahou/test/blob/dev/demo/ripple.html "悬停显示")
-[仿andriod水波效果 --在线效果预览](http://htmlpreview.github.io/?https://github.com/zhenghuahou/test/blob/dev/demo/ripple.html "悬停显示")
+1. [仿andriod水波效果 >> 在线代码预览](https://github.com/zhenghuahou/test/blob/dev/demo/ripple.html "悬停显示")
+[仿andriod水波效果 >> 在线效果预览](http://htmlpreview.github.io/?https://github.com/zhenghuahou/test/blob/dev/demo/ripple.html "悬停显示")
+
+2. [输入手机号码时格式化 >> 源码](https://github.com/zhenghuahou/test/blob/master/demo/format.html "代码")
+[输入手机号码时格式化 >> 在线预览](http://htmlpreview.github.io/?https://github.com/zhenghuahou/test/blob/master/demo/format.html "手机号码格式化")

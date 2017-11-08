@@ -37,7 +37,7 @@
         function doFormat(val) {
             if (val) {
                 val = val.replace(/\s+/g, '');
-                val = val.replace(/\s+/g, '').replace(/(\d{3})(\d{4})?(\d{1,})?/, function (word, $1, $2, $3) {
+                val = val.replace(/(\d{3})(\d{4})?(\d{1,})?/, function (word, $1, $2, $3) {
                     var result = '', space = ' ';
                     if (!$2) {
                         //str.substring(indexStart[, indexEnd])

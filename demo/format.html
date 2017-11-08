@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>手机号码格式化</title>
+    <meta name="viewport" content="minimal-ui,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .txt {
+            color: #008000;
+            margin-bottom: 10px;
+        }
+
+        input {
+            height: 20px;
+            line-height: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <p class='txt'>格式化手机号码(在下面输入框输入手机号码):</p>
+    <input placeholder="格式化手机号码" type="text" index='1' oninput="format.call(this,event)" maxlength="15">
+    <script type="text/javascript">
+        function doFormat(val) {
+            if (val) {
+                val = val.replace(/\s+/g, '');
+                val = val.replace(/\s+/g, '').replace(/(\d{3})(\d{4})?(\d{1,})?/, function (word, $1, $2, $3) {
+                    var result = '', space = ' ';
+                    if (!$2) {
+                        //str.substring(indexStart[, indexEnd])
+                        let substr = val.substring(3);
+                        result = $1 + (substr ? space + substr : '');
+                    } else if (!$3) {
+                        result = $1 + space + $2
+                    } else {
+                        result = $1 + space + $2 + space + $3
+                    }
+                    return result
+                });
+            }
+
+            return val;
+
+        }
+
+        function format(e) {
+            this.value = doFormat(this.value);;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>deepCopy</title>
+    <meta name="viewport" content="minimal-ui,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .txt {
+            color: #008000;
+            margin-bottom: 10px;
+        }
+
+        input {
+            height: 20px;
+            line-height: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <p class='txt'>deepCopy</p>
+    <pre>
+        function find(list, f) {
+            return list.filter(f)[0]
+        }
+        function deepCopy(obj, cache) {
+            if (cache === void 0) cache = [];
+
+            // just return if obj is immutable value
+            if (obj === null || typeof obj !== 'object') {
+                return obj
+            }
+
+            // if obj is hit, it is in circular structure
+            var hit = find(cache, function (c) { return c.original === obj; });
+            if (hit) {
+                return hit.copy
+            }
+
+            var copy = Array.isArray(obj) ? [] : {};
+            // put the copy into cache at first
+            // because we want to refer it in recursive deepCopy
+            cache.push({
+                original: obj,
+                copy: copy
+            });
+
+            Object.keys(obj).forEach(function (key) {
+                copy[key] = deepCopy(obj[key], cache);
+            });
+
+            return copy
+        }
+
+    </pre>
+    <script type="text/javascript">
+
+        /**
+      * Get the first item that pass the test
+      * by second argument function
+      *
+      * @param {Array} list
+      * @param {Function} f
+      * @return {*}
+      */
+        function find(list, f) {
+            return list.filter(f)[0]
+        }
+
+        /**
+         * Deep copy the given object considering circular structure.
+         * This function caches all nested objects and its copies.
+         * If it detects circular structure, use cached copy to avoid infinite loop.
+         *
+         * @param {*} obj
+         * @param {Array<Object>} cache
+         * @return {*}
+         */
+        function deepCopy(obj, cache) {
+            if (cache === void 0) cache = [];
+
+            // just return if obj is immutable value
+            if (obj === null || typeof obj !== 'object') {
+                return obj
+            }
+            var copy = Array.isArray(obj) ? [] : {};
+            
+            // if obj is hit, it is in circular structure
+            var hit = find(cache, function (c) { return c.original === obj; });
+            if (hit) {
+                return hit.copy
+            }
+
+            // put the copy into cache at first
+            // because we want to refer it in recursive deepCopy
+            cache.push({
+                original: obj,
+                copy: copy
+            });
+
+            Object.keys(obj).forEach(function (key) {
+                copy[key] = deepCopy(obj[key], cache,key);
+            });
+
+            return copy
+        }
+
+    </script>
+    <script>
+        var obj = {
+            'a':1,
+            'b':[23,67],
+            'c':function test(){}
+        }
+        var objCopy = deepCopy(obj);
+        console.log(' objCopy:',objCopy)
+        console.log(' objCopy===obj:',objCopy===obj)
+
+    </script>
+</body>
+
+</html>

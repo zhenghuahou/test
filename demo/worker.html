@@ -11,9 +11,10 @@
   <script id="worker1" type="javascript/worker">
     // This script won't be parsed by JS engines
     // because its type is javascript/worker.
+    //2
     self.onmessage = function(e) {
-      console.warn(+new Date,'@onmessage:',e,arguments);
-         self.postMessage('msg from worker');
+      console.warn(+new Date,'@onmessage:',e.data);
+         self.postMessage('msg from worker '+eval(e.data));
     };
     // Rest of your worker code goes here.
   </script>
@@ -24,24 +25,28 @@
       var fragment = document.createDocumentFragment();
       fragment.appendChild(document.createTextNode(msg));
       fragment.appendChild(document.createElement('br'));
-      console.warn(' ')
+      console.warn(+new Date,'fragment: ',fragment)
       document.querySelector("#log").appendChild(fragment);
     }
 
     var blob = new Blob([document.querySelector('#worker1').textContent]);
 
     var worker = new Worker(window.URL.createObjectURL(blob));
+    //4
     worker.onmessage = function(e) {
       log('接收到worker传递过来的消息:'+e.data)
-      console.warn('log',(+new Date),"Received: " + e.data);
+      console.warn(+new Date,'接收到worker传递过来的消息onmessage',"Received: " + e.data);
     }
 
     worker.addEventListener('error', function(){
       console.error(' addEventListener-->error:',arguments);
     }, false);
 
+    //1
     worker.postMessage(`(function(){
-      console.warn(+new Date,'   success-->this:',this)
+      //3
+      console.warn(+new Date,'@cb :',this);
+      return [23,56,78]
     })()`); // Start the worker.
   </script>
 </body>

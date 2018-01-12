@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>worker实例</title>
+  <meta charset="utf-8" />
+</head>
+<body>
+  https://www.html5rocks.com/en/tutorials/workers/basics/
+  <div id="log"></div>
+
+  <script id="worker1" type="javascript/worker">
+    // This script won't be parsed by JS engines
+    // because its type is javascript/worker.
+    self.onmessage = function(e) {
+      console.warn(+new Date,'@onmessage:',e,arguments);
+         self.postMessage('msg from worker');
+    };
+    // Rest of your worker code goes here.
+  </script>
+
+  <script>
+    function log(msg) {
+      // Use a fragment: browser will only render/reflow once.
+      var fragment = document.createDocumentFragment();
+      fragment.appendChild(document.createTextNode(msg));
+      fragment.appendChild(document.createElement('br'));
+      console.warn(' ')
+      document.querySelector("#log").appendChild(fragment);
+    }
+
+    var blob = new Blob([document.querySelector('#worker1').textContent]);
+
+    var worker = new Worker(window.URL.createObjectURL(blob));
+    worker.onmessage = function(e) {
+      log('接收到worker传递过来的消息:'+e.data)
+      console.warn('log',(+new Date),"Received: " + e.data);
+    }
+
+    worker.addEventListener('error', function(){
+      console.error(' addEventListener-->error:',arguments);
+    }, false);
+
+    worker.postMessage(`(function(){
+      console.warn(+new Date,'   success-->this:',this)
+    })()`); // Start the worker.
+  </script>
+</body>
+</html>

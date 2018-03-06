@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>水平垂直居中 </title>
+    <meta name="viewport" content="minimal-ui,width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .txt {
+            color: #008000;
+            margin-bottom: 10px;
+        }
+
+        input {
+            height: 20px;
+            line-height: 20px;
+            padding: 5px;
+        }
+    </style>
+    <style>
+        .cont {
+            /* padding: 20px; */
+            height: 100%;
+            background-color: #008000;
+            position: relative;
+            /* min-height: 1000px; */
+        }
+        .cont.cur{
+            padding-bottom: 100%;
+            margin-bottom: -100%;
+        }
+
+        .pop {
+            position: absolute;
+            /* margin-top:-50%; */
+            /* margin-left:-50%;规定基于父元素的宽度的百分比的外边距。 */
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #f80;
+        }
+        .pop.hide{
+            display:none;
+        }
+        .test{
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cont">
+        <div class="test">test</div>
+        <div class="pop">
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+          选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+            <p>通过设置属性filterable可以开启搜索模式。单选和多选都支持搜索模式。多选搜索时，可以使用键盘Delete快捷删除最后一个已选项。</p>
+        </div>
+    </div>
+    <p style="margin-top: 40px;margin-left: -30px;">1111---222</p>
+</body>
+
+</html>

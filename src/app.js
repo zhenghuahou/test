@@ -1,7 +1,4 @@
-require('./css/demo.scss');
-
-
-import pp from "./promise-test.js"
+require('./css/demo.scss')
 
 
 var Ripple = e => { // event
@@ -55,9 +52,3 @@ box.onclick = function(e) {
     Ripple(e)
   }
 }
-
-
-
-
-
-

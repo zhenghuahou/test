@@ -108,10 +108,13 @@
         console.error(' arg:', arguments);
         accumulator[a[currentValue]] = currentValue;
         return accumulator
-    },{})
+    }, {})
 </script>
 
 <body>
+    <rry style='color:red' id=rry>
+        rryrryrryrryrryrryrryrryrryrryrryrryrryrryrryrryrryrry
+    </rry>
     https://juejin.im/post/5abf90236fb9a028c368ea49?utm_source=gold_browser_extension
     <div class="title">致敬第四届中国CSS大会</div>
     <div class="container">
@@ -120,6 +123,12 @@
             <div class="circle"></div>
         </div>
     </div>
+    <script>
+        rry.addEventListener('click2', function () {
+            console.error(' 我是自定义元素的事件 this：',this,' arg:',arguments);
+        }, false);
+
+    </script>
 </body>
 
 </html>

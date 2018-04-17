@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>仿andriod水波效果</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+  <style> 
+  body{
+    background-color: #555;
+  }
+  </style>
+
+
+ </head>
+  <body>
+    <div id="box" class="box">
+      <p>333  defer属性会影响 DOMContentLoaded事件。
+        defer延迟执行，相对于放在body最后（理论上在DOMContentLoaded事件前）</p>
+      <p>async属性不会会影响 DOMContentLoaded事件。async异步执行，异步下载完毕后就会执行，不确保执行顺序，一定在onload前，但不确定在DOMContentLoaded事件的前后</p>
+    </div>
+    <script src='../src/js/test.js'>
+      // const startCallback = Date.now();
+      // while (Date.now() - startCallback < 5000) {
+      //   // 什么也不做
+      //   console.warn(2);
+      // }
+    </script>
+  </body>
+
+  
+</html>

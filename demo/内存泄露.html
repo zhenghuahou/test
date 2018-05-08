@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>内存泄露实例</title>
+  <meta charset="utf-8" />
+</head>
+
+<body>
+  <script>
+    // (function () {//在console 的时候，不在console之前手动清除replaceThing,依然有内存泄露
+      // function fn() { //在console 的时候，不在console之前手动清除replaceThing,依然有内存泄露
+        var replaceThing = function () {
+
+          var arr = new Array(1000000);
+          arr.unshift(+new Date);
+
+          replaceThing.theThing = {
+            longStr: arr.join('*'),
+          };
+          // do something ...
+
+          // replaceThing.theThing = null;//清除replaceThing.theThing，在执行下面的console，不会有内存泄露
+          console.error('closure replaceThing.theThing 8:', replaceThing.theThing);//引用`replaceThing.theThing` 导致内存泄露
+
+        };
+        // replaceThing();
+      // }
+      setInterval(replaceThing, 3000);//内存泄露
+    // }());
+  </script>
+
+</body>
+
+</html>

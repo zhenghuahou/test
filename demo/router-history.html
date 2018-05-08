@@ -28,8 +28,8 @@
             }
             init(path) {
 
-                console.error(' path:',path);
-                history.replaceState({ path: path }, null, path);
+                console.warn('[init] path:',path,' _key:+new Date:',+new Date);
+                history.replaceState({ path: path,_key:+new Date }, null, path);
                 this.routes[path] && this.routes[path]();
             }
 
@@ -38,11 +38,14 @@
             }
 
             go(path) {
-                history.pushState({ path: path }, null, path);
+
+                console.error('[go] pushState--> path:',path,' _key:+new Date:',+new Date);
+                history.pushState({ path: path,_key:+new Date }, null, path);
                 this.routes[path] && this.routes[path]();
             }
             _bindPopState() {
                 window.addEventListener('popstate', e => {
+                    console.error(' e:',e);
                     const path = e.state && e.state.path;
                     this.routes[path] && this.routes[path]();
                 });

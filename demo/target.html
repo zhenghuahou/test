@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HTML
+        <a> 标签的 target 属性</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, STHeiti, "Hiragino Sans GB", sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        pre {
+            white-space: pre-line;
+            padding: 10px;
+            border: 1px dashed #333;
+            background-color: #f0f0f0;
+        }
+
+        ul>li {
+            margin-top: 10px;
+        }
+    </style>
+
+    <body>
+        <pre>
+定义和用法
+<a> 标签的 target 属性规定在何处打开链接文档。
+
+如果在一个 <a> 标签内包含一个 target 属性，浏览器将会载入和显示用这个标签的 href 属性命名的、名称与这个目标吻合的框架或者窗口中的文档。如果这个指定名称或 id 的框架或者窗口不存在，浏览器将打开一个新的窗口，给这个窗口一个指定的标记，然后将新的文档载入那个窗口。从此以后，超链接文档就可以指向这个新的窗口。
+
+当用户第一次选择内容列表中的某个链接时，浏览器将打开一个新的窗口，将它标记为 "view_window"，然后在其中显示希望显示的文档内容。如果用户从这个内容列表中选择另一个链接，且这个 "view_window" 仍处于打开状态，浏览器就会再次将选定的文档载入那个窗口，取代刚才的那些文档。
+
+在整个过程中，这个包含了内容列表的窗口是用户可以访问的。通过单击窗口中的一个连接，可使另一个窗口的内容发生变化。
+    </pre>
+        <h3>Table of Contents</h3>
+        <ul>
+            <li>
+                <a href="boat.html" target="view_window_test1">boat.html</a>
+            </li>
+            <li>
+                <a href="ripple.html" target="view_window_test2">ripple.html</a>
+            </li>
+            <li>
+                <a href="middle.html" target="view_window">middle.html </a>
+            </li>
+            <li>
+                <a href="format.html" target="view_window">format.html</a>
+            </li>
+        </ul>
+        <pre>
+
+直接依次点击上面的链接,boat页面新开一个window.name值为'view_window_test1'的窗口,ripple页面新开一个window.name值为'view_window_test2'的窗口,middle与format页面公用一个新窗口(窗口的name值为'view_window')。如果boat对应的窗口的name值被手动修改了，在点击boat链接地址，会在新开一个叫'view_window_test1'值的窗口。
+
+mac下，按住cmd键,在依次点击下面的链接，还是每次都会新开一个窗口，窗口的name值为‘’
+    </pre>
+    </body>
+
+</html>

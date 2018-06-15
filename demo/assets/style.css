@@ -1,0 +1,16 @@
+body {
+    font-family: Arial, Helvetica, STHeiti, "Hiragino Sans GB", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+pre {
+    white-space: pre-line;
+    padding: 10px;
+    border: 1px dashed #333;
+    background-color: #f0f0f0;
+}
+
+ul>li {
+    margin-top: 10px;
+}

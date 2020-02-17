@@ -5,9 +5,13 @@
     body {
         margin: 0;
         padding: 0;
-        background-color: #000;
+        background-color: #fff;
     }
-
+    code {
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+        padding: 0px 2px;
+    }
     .title {
         color: #fff;
         text-align: center;
@@ -32,7 +36,7 @@
         height: 400px;
         transform-origin: 49% 47%;
         border-radius: 50%;
-        background-color: #fff;
+        background-color: #ff0;
         /* animation: 3s rotate linear infinite; */
         animation: 3s rotate cubic-bezier(0.25, 0.1, 0.3, 0.93) infinite
     }
@@ -44,7 +48,7 @@
         height: 400px;
         transform-origin: 49% 47%;
         border-radius: 50%;
-        background-color: #fff;
+        background-color: #00f;
         /* animation: 3s rotate linear infinite; */
         animation: 3s rotate cubic-bezier(0.25, 0.1, 0.3, 0.93) infinite;
         margin-left: 10px;
@@ -105,30 +109,24 @@
         web: "网站"
     }
     var test = Object.keys(a).reduce(function (accumulator, currentValue, currentIndex, array) {
-        console.error(' arg:', arguments);
+        // console.error(' arg:', arguments);
         accumulator[a[currentValue]] = currentValue;
         return accumulator
     }, {})
 </script>
 
 <body>
-    <rry style='color:red' id=rry>
-        rryrryrryrryrryrryrryrryrryrryrryrryrryrryrryrryrryrry
-    </rry>
+    <code>123</code>
     https://juejin.im/post/5abf90236fb9a028c368ea49?utm_source=gold_browser_extension
     <div class="title">致敬第四届中国CSS大会</div>
+    <h1 style='font-size: 12px; color: red;'>React.js 小书</h1>
     <div class="container">
         <div class="wp">
             <img class="boat" src="../src/img/boat.svg" alt="">
             <div class="circle"></div>
         </div>
     </div>
-    <script>
-        rry.addEventListener('click2', function () {
-            console.error(' 我是自定义元素的事件 this：',this,' arg:',arguments);
-        }, false);
-
-    </script>
+    <script  src='../src/js/mod.js'></script>
 </body>
 
 </html>

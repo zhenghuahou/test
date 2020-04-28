@@ -18,7 +18,9 @@
 #!/bin/bash
 hasGit=`which git` # 判断是否存在git
 msg=${1:-'auto commit'} # 获取终端输入的第一个参数，若为空则为auto commit
-echo "hasGit"
+echo "$hasGit"
+echo "$msg"
+
 
 if [ ! $hasGit ];then
   echo 'Please download git first!';

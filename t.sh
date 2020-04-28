@@ -18,8 +18,8 @@
 #!/bin/bash
 hasGit=`which git` # 判断是否存在git
 msg=${1:-'auto commit'} # 获取终端输入的第一个参数，若为空则为auto commit
-echo "$hasGit"
-echo "$msg"
+echo hasGit:"$hasGit"
+echo msg:"$msg"
 
 
 if [ ! $hasGit ];then

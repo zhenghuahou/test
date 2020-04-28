@@ -13,8 +13,9 @@ else
   result=`git branch | grep "*"` # 获取分支名
   curBranch=${result:2} # 去除多余的*
   echo "当前分支:$curBranch"
+  git fetch
   git add .
-  git commit -m "$msg"
+  git commit --no-verify -m "$msg"
   git push origin
 fi
 

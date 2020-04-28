@@ -7,7 +7,7 @@ msg=${1:-'auto commit'} # 获取终端输入的第一个参数，若为空则为
 echo "git提交注释:$1"
 
 if [ ! $hasGit ];then
-  echo 'Please download git first!';
+  echo 'Please download git first';
   exit 1;
 else 
   result=`git branch | grep "*"` # 获取分支名

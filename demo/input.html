@@ -4,24 +4,181 @@
 <head>
   <title>input maxlength</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script>
+
+
+      
+  var  aa,isSubmitSyncData;
+
+var handleSync = async () => {
+
+  console.error(' isSubmitSyncData:', isSubmitSyncData,performance.now());
+  if (isSubmitSyncData) {
+    return;
+  }
+  isSubmitSyncData = true;
+  
+  try {;
+    aa = await new Promise(function(resolve,reject){
+      console.log(' t1 start:"',performance.now())
+        setTimeout(function(){
+                // throw new Error('p2 error') ////不会被try --catch到
+              // aa(); //不会被try --catch到
+            reject('custom errr');
+        },2000)
+    }).catch(function(e){
+        console.error('catch error:',e,' t2:',performance.now());
+    })
+    
+  } catch (e) {
+    console.log('同步失败 e:', e);
+   
+   
+  } finally {
+    console.log('同步 finally:', isSubmitSyncData,'finaly t3:',performance.now());
+    isSubmitSyncData = false;
+  }
+};
+
+
+handleSync();
+
+
+  </script>
+  <script>
+    var fetchFailure = () => new Promise((resolve, reject) => {
+      console.log(' time start:"',performance.now())
+      setTimeout(() => {// 模拟请求
+          // abc(); //不会被try --catch到
+          // throw new Error('async error') //不会被try --catch到
+        reject('fetch failure...'); //会被try --catch到
+      },2000)
+    })
+
+    async function main() {
+      try {
+        const res = await fetchFailure();
+        console.error('try内部的代码:',res, '>>>>res');
+      } catch (e) {
+        console.error('catch 到错误:',e,' time end:',performance.now());
+      }
+    }
+    // main();
+
+
+
+  </script>
+  <script>
+
+    // window.addEventListener("unhandledrejection", e => {
+    //   console.log('unhandledrejection-->', e)
+    // });
+
+    // window.addEventListener('error', args => {
+    //   console.log(
+    //     'error event:', args
+    //   );
+    //   // return true;
+    // },
+    //   true // 利用捕获方式
+    // );
+
+  </script>
+  <!-- <script>
+
+    class Point {
+      a() {
+        console.log('point a')
+      }
+
+      aa = () => {
+        console.log('point aa')
+      }
+    }
+    class ColorPoint extends Point {
+      constructor(x, y, color) {
+        super(x, y); // 调用父类的constructor(x, y)
+        this.color = color;
+      }
+
+      toString() {
+        return this.color + ' ' + super.toString(); // 调用父类的toString()
+      }
+    }
+
+
+    let cp = new ColorPoint(); // ReferenceError
+
+
+    // 向可写流中写入数据一百万次。
+    // 留意背压（back-pressure）。
+    // Write the data to the supplied writable stream one million times.
+    // Be attentive to back-pressure.
+    // http://nodejs.cn/api/stream/event_drain.html
+    function writeOneMillionTimes(writer, data, encoding, callback) {
+      let i = 1000000;
+      write();
+      function write() {
+        let ok = true;
+        do {
+          i--;
+          if (i === 0) {
+            // 最后一次写入。
+            writer.write(data, encoding, callback);
+          } else {
+            // 检查是否可以继续写入。 
+            // 不要传入回调，因为写入还没有结束。
+            ok = writer.write(data, encoding);
+          }
+        } while (i > 0 && ok);
+        if (i > 0) {
+          // 被提前中止。
+          // 当触发 'drain' 事件时继续写入。
+          writer.once('drain', write);
+        }
+      }
+    }
+
+
+
+   
+  </script> -->
   <style>
     .test {
       padding: 20px;
       height: 2000px;
       background-color: #ccc;
     }
-    input{
-      width:300px;
+
+    input {
+      width: 300px;
       height: 30px;
       margin-bottom: 20px;
+    }
+
+    body {
+      padding-bottom: 2100px;
     }
   </style>
 
 <body>
   <p>345123</p>
-  <input type="tel" placeholder="tel类型 maxlength起作用" maxlength="6" /><br/>
-  <input type="number" placeholder="number类型  maxlength不起作用" maxlength="6" /><br/>
-  <input type="text"  value='1234443222'placeholder="text类型 maxlength起作用" maxlength="6" /><br/>
+  <input type="tel" placeholder="tel类型 maxlength起作用" maxlength="6" /><br />
+  <input type="number" placeholder="number类型  maxlength不起作用" maxlength="6" /><br />
+  <input type="text" value='1234443222' placeholder="text类型 maxlength起作用" maxlength="6" /><br />
+  <script>
+
+    // new Promise(function (resolve, reject) {
+    //   reject(11)
+    // });
+    // aa();
+
+  </script>
+  <script>
+
+
+
+  </script>
 </body>
 
 </html>

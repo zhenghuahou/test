@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html><head>
+  <title>map</title>
+  <meta charset="UTF-8">
+<body>
+  <script>
+      var a = new Array(3);//[undefined × 3] //空单元数组
+      var b = [undefined,undefined,undefined];//[undefined, undefined, undefined]
+      var c = [];
+      c.length = 3; //[undefined × 3] //空单元数组
+      var d = Array.apply(null,{length:3}); //[undefined, undefined, undefined]
+
+      //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+      /*
+      map calls a provided callback function once for each element in an array, in order, 
+      and constructs a new array from the results.
+      callback is invoked only for indexes of the array which have assigned values, 
+      including undefined. It is not called for missing elements of the array (that is, indexes that have never been set, 
+      which have been deleted or which have never been assigned a value).
+      */
+      //0 in a:false
+      var aa = a.map(function(value,index,arr){
+          console.warn("aa: value,index",value,index); //不会被执行
+          return index;
+      })
+      //aa:[undefined × 3]
+
+      //0 in b:true
+      var bb = b.map(function(value,index,arr){
+          console.warn("bb: value,index",value,index);//会执行
+          return index;
+      })
+      //bb:[0,1,2]
+
+      //0 in c:false
+      var cc = c.map(function(value,index,arr){
+          console.warn("cc: value,index",value,index); //不会被执行
+          return index;
+      })
+      //cc:[undefined × 3]
+
+      //0 in d:true
+      var dd = d.map(function(value,index,arr){
+          console.warn("dd: value,index",value,index);//会执行
+          return index;
+      })
+      //dd:[0,1,2]
+  </script>
+</body>
+</html>

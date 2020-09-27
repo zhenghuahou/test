@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>执行 innerHTML 里的 script</title>
+</head>
+<body>
+  <div id="box" class="box">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+  <div id="test">Hello HTML</div>
+  <script>
+      document.getElementById('test').innerHTML = 'Hello JS';
+  </script>
+  <script src='./js/script.js'></script>
+  
+
+  <script>
+    function runScript(script) {
+      console.log(' script:',script);
+      // 直接 document.head.appendChild(script) 是不会生效的，需要重新创建一个
+      const newScript = document.createElement('script');
+      // 获取 inline script
+      newScript.innerHTML = script.innerHTML;
+      // 存在 src 属性的话
+      const src = script.getAttribute('src');
+      if (src) newScript.setAttribute('src', src);
+
+      document.head.appendChild(newScript);
+      // document.head.removeChild(newScript);
+    }
+
+    function setHTMLWithScript(container, rawHTML) {
+      container.innerHTML = rawHTML;
+      const scripts = container.querySelectorAll('script');
+      console.warn(' container:',container,' rawHTML:',rawHTML,' scripts:',scripts);
+      
+      for (let script of scripts) {
+        runScript(script);
+      }
+    }
+    var tagString = "<div>I am a div node</div><script>console.info('我是test',+new Date)<\/script>";
+    tagString+="<script src='./js/script.js'><\/script>";
+    setHTMLWithScript(document.body, tagString);
+
+    var t = [1,2,4]
+    var tt = [...t];
+  </script>
+
+</body>
+
+</html>

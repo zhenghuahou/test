@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>pageA--wepack测试页面</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <style>
+    .test {
+      padding: 20px;
+      height: 2000px;
+      background-color: #ccc;
+    }
+  </style>
+  <script>
+    function scrollWindow() {
+      // setTimeout(()=>{ //ok
+      console.error('scroll 2')
+      window.scrollTo(100, 2000);
+      // },1000)
+    }
+  </script>
+
+<body>
+  <div id="box" class="box">
+    测试页面
+    <input type="button" onclick="scrollWindow()" value="滚动条" />
+    <div class="test">
+
+    </div>
+    <p>&#183;</p>
+    <p>\u00B7</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123</p>
+    <p>123333</p>
+    <p>123yyy</p>
+    <p>123111aaa</p>
+    <p>123bbbb</p>
+    <a target="_self" id='dd' style="color: rgb(239, 94, 3);">test link</a>
+  </div>
+
+  <script>
+    //  console.error('scroll 3')
+    document.body.append(Math.random())
+    var s = document.getElementById('dd').offsetTop
+    document.body.append('\n s:' + s)
+    console.log('s-1000:', s - 2000)
+    // window.scrollTo(0, s-2000);
+    window.scrollTo({
+      top: s - 500,
+      behavior: "smooth"
+    });
+  </script>
+
+</body>
+
+</html>

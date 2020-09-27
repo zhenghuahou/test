@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>async案例</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    原文链接：
+    中文：
+    https://mp.weixin.qq.com/s?__biz=MzAxODE2MjM1MA==&mid=2651552095&idx=2&sn=5314cbb18ca7b3dc7ebf8b79a091db9e&pass_ticket=MMbhtXeZMsm6DeGB58rT4cENAooxKetACNuZaM4OoJxFYy7%2B03ktz83ujQ49QLl%2F
+    英文：
+    https://www.sitepoint.com/simplifying-asynchronous-coding-async-functions/
+    <script>
+        
+        // function doAsyncOp() {
+        //  //   To reject a native promise you can use reject inside the Promise constructor, or you can throw an error—either inside the Promise constructor or within a then or catch callback. If an error is thrown outside of that scope, it won’t be contained in the promise.
+        //  // */
+        //   throw new Error("something is bad 1");//1
+        //   return new Promise(function(resolve, reject) {
+        //     let {daya} = undefined;//2
+        //     if (somethingIsBad) {
+        //       throw new Error("something is bad2");
+        //     }
+        //     resolve("nothing is bad");
+        //   });
+        // }
+
+
+        // function x() {
+        //   var val = doAsyncOp().then(function() {
+        //     throw new Error("I just think an error should be here");
+        //   },function(err){
+        //        //不能捕获到doAsyncOp函数中Promise之外的错误，能捕获到doAsyncOp函数中Promise中的错误
+        //        //捕获不到1处的错误，但是能捕获到2处的错误
+        //       console.log(" %c捕获异常"+err," text-shadow: 0 1px 0 #ccc,0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2);font-size:16px")
+        //   });
+        //   console.warn(' ~~promise~~',val)
+        //   throw new Error("The more errors, the merrier");
+        //   return val;
+        // }
+
+        // x();
+    </script>
+
+    <script>
+        async function doAsyncOp() {
+          throw new Error("something is bad 1");
+          return new Promise(function(resolve, reject) {
+               let {daya} = undefined;
+            if (somethingIsBad) {
+              throw new Error("something is bad 2");
+            }
+            resolve("nothing is bad");
+          });
+        }
+
+
+        function x() {
+          var val =  doAsyncOp().then(function() {
+            // this one will work just fine
+            throw new Error("I just think an error should be here");
+          },function(err){
+              //能捕获到doAsyncOp函数的异常，不论错误在doAsyncOp何处
+              console.log(" %c捕获异常"+err," text-shadow: 0 1px 0 #ccc,0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2);font-size:16px");
+          });
+          console.warn(' 我爱上了async',val)
+          // this one will kill execution
+          throw new Error("The more errors, the merrier");
+          return val;
+        }
+
+        var test = x();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>async案例二</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script>
+        // function timeout(ms) {
+        //     new Promise((resolve) => {
+        //         setTimeout(function () {
+        //             console.info(' timeout', ms, +new Date);
+        //             resolve(ms);
+        //         }, ms);
+        //     });
+        // }
+
+
+        // function timeout2(ms) {
+        //     return new Promise((resolve) => {
+        //         setTimeout(function () {
+        //             console.info(' timeout2', ms, +new Date);
+        //             resolve(ms);
+        //         }, ms);
+        //     });
+        // }
+
+        // function get() {
+        //     function demo() {
+        //     }
+        // }
+
+        // var asyncReadFile = async function () {
+        //     window.f = await get();
+        //     window.f0 = await (1, 2);
+        //     console.log(' f0:', f0, ' f:', f, +new Date);
+        //     window.f1 = await timeout(2000);
+        //     console.log(' f1:', f1, +new Date);
+        //     window.f2 = await timeout2(3000);
+        //     console.log(' f2:', f2, +new Date());
+        // };
+
+        // var demo = asyncReadFile();
+        //demo:
+        //Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: undefined}
+
+        /*输出结果
+        f0: 2  f: undefined 1491966476872
+        f1: undefined 1491966476875
+        timeout 2000 1491966478875
+        timeout2 3000 1491966479880
+        f2: 3000 1491966479881
+        */
+    </script>
+    <script>
+           function timeout(ms) {
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    console.info(' timeout', ms, +new Date);
+                    resolve(ms);
+                }, ms);
+            });
+        }
+
+
+        function timeout2(ms) {
+            return new Promise((resolve) => {
+                setTimeout(function () {
+                    console.info(' timeout2', ms, +new Date);
+                    resolve(ms);
+                }, ms);
+            });
+        }
+
+        function get() {
+            return function demo() {
+            }
+        }
+
+        var asyncReadFile = async function () {
+            window.f = await get(); //f的值为get函数的返回值
+            window.f0 = await (1, 2);
+            console.log(' f0:', f0, ' f:', f, +new Date);
+            window.f1 = await timeout(2000); //timeout里面return异步操作，才会阻塞下面的代码({2})执行
+            console.log(' f1:', f1, +new Date);//{2}
+            window.f2 = await timeout2(3000);
+            console.log(' f2:', f2, +new Date());
+        };
+
+        var demo = asyncReadFile();
+        /*输出结果
+             f0: 2  f: function demo() {
+            } 1491966721577
+            timeout 2000 1491966723581
+            f1: 2000 1491966723582
+            timeout2 3000 1491966726585
+            f2: 3000 1491966726586
+        */
+    </script>
+</body>
+</html></html>

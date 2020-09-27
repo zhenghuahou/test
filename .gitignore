@@ -12,6 +12,7 @@ classes
 .settings
 .classpath
 .project
+.gulp
 
 practice/
 
@@ -22,6 +23,8 @@ logs
 .idea
 dist
 uploadzip
+
+zip
 
 npm-debug.log
 node_modules

@@ -1,5 +1,5 @@
 {
-  "name": "vue-test",
+  "name": "test",
   "version": "0.0.1",
   "main": "",
   "description": "test",
@@ -20,28 +20,57 @@
     "url": "https://github.com/zhenghuahou/test.git"
   },
   "scripts": {
-    "test": "gulp --cwd ./ --gulpfile  build/prod.js",
+    "prebuild": "echo I run before the build script",
+    "test": "gulp --cwd ./ --gulpfile  build/dev.js",
     "test:local": "npm run test -- --local hjk --port 8080",
-    "dev": "node build/dev-server.js WEBPACK_CONFIG=./build/webpack.config.js --env dev --port 8888"
+    "aa": "npm rebuild node-sass",
+    "fine": "npm run aa && npm run dev",
+    "open": "opener http://localhost:8080",
+    "predev": "babel-node build/predev.js",
+    "dev": "babel-node build/dev-server.js WEBPACK_CONFIG=./build/webpack.config.js --env dev --port 8888",
+    "devtool": "babel-node build/devtool.js  --env dev --port 8888",
+    "//imagemin": "npn run imagemin(使用gulp-tinypng图片压缩)",
+    "imagemin": "gulp --gulpfile build/task/imagemin.js --cwd ./  --silent",
+    "//prod": "npn run imagemin(图片压缩)执行完之后执行npm run devtool",
+    "prod": "npm run imagemin && npm run devtool",
+    "postdev": "echo 当dev执行完毕会执行npm run postdev,但是如果npm run dev里面包含有watch功能，则npm run dev命令会一直执行，从而导致npm run postdev不会被执行"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
-    "babel-preset-es2015": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-register": "^6.23.0",
     "chalk": "^1.1.3",
     "clean-webpack-plugin": "^0.1.13",
     "copy-webpack-plugin": "^4.0.0",
     "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.10.0",
+    "gulp": "^3.9.1",
+    "gulp-tinypng": "^1.0.2",
+    "html-webpack-plugin": "^2.28.0",
+    "ip": "^1.1.4",
     "monkey-hot-loader": "0.0.3",
-    "node-sass": "^3.10.1",
+    "node-sass": "^4.5.0",
+    "open-browser-webpack-plugin": "0.0.3",
+    "opener": "^1.4.3",
+    "react-hot-loader": "^1.3.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
+    "vux-loader": "^1.0.35",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.1"
+    "webpack-dev-server": "^1.16.2",
+    "webpack-hot-middleware": "^2.13.1",
+    "zip-webpack-plugin": "^1.0.0"
   },
   "dependencies": {
     "express": "^4.14.0",
-    "vue-resource": "^1.0.3"
+    "mint-ui": "^2.1.1",
+    "vue": "^2.1.10",
+    "vux": "^2.1.0-rc.41"
   }
 }

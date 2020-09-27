@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h3{
+            padding:2em 2em 0;
+        }
+    </style>
+</head>
+<body>
+    <h3>1.默认情况下，没有 defer 或 async 属性:</h3>
+    <pre> 
+        script 标签默认行为（不带defer或async属性）会阻止文档解析，相关脚本会立即加载并执行。脚本执行顺序和 script 标签出现的顺序一致。
+        "立即"指的是在渲染该 script 标签时，就立即加载并执行脚本，此时终端该标签之下的文档解析，直到脚本加载并执行完成，再继续后面的文档解析。
+        如果前面的脚本文件一直pengding，返回很慢，那么后面的脚本及时加载好了，也不会执行。知道前面的script脚本返回或者超时，后面的脚本才会执行。
+        即前面的脚本会阻塞后面的脚本执行。
+        下载是并行的，但是脚本执行是串行的，能保证顺序
+    </prev>
+    参考网址:<a href='https://js.deepjs.net/2.script/' target="_blank">https://js.deepjs.net/2.script/</a>
+    <script async src="js/1.js"> </script>
+    <script  src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- <script  src="https://www.google.com/recaptcha/api.js"></script> -->
+    <!-- 下面这个js是404，也会阻塞后面2.js, 3.js,4.js的执行-->
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd2/react.development.js"></script> -->
+    <script  src="js/2.js"> </script>
+    <script  src="js/3.js" > </script>
+    <script  src="js/4.js"> </script>
+</body>
+</html>

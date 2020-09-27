@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html><head>
+  <title>Javascript中的apply和call继承--实践</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<body>
+<div class="box">
+    原文网址：https://github.com/Wscats/Good-text-Share/issues/56
+</div>
+
+<script>  
+    // function animal(type) {
+    //     console.warn(' type:',type,' arguments:',arguments,arguments[0]);
+    //     this.type = type
+    //     this.behavior = function(){
+    //         console.log(this.type+" is running")
+    //     }
+    // }
+
+    // function cat(name, type) {
+    //     this.name = name
+    //     //这里call的意思就是把animal的方法应用到cat这个对象身上
+    //     //所以cat就继承了animal的方法
+    //     //animal.call(this);//type undefined
+    //     //animal.call(this,type);//type cute
+    //     //animal.call(this,arguments[1]);//type cute
+    //     animal.call(this,arguments);//type ['wsscat','cute']
+    //     animal.apply(this,arguments)//type wsscat 
+    // }
+
+    // var ani = new animal('wsanimal');
+    // var cat = new cat('wsscat','cute');
+
+    // // ani.behavior === cat.behavior //false
+
+
+
+    function animal(type) {
+        this.type = type
+        this.behavior = function() {
+            console.log(this.type + " is running")
+        }
+        this.is = true;
+    }
+    animal.prototype.action = function() {
+        console.log("running")
+    }
+
+    function cat(name, type) {
+        this.name = name
+        animal.call(this, type)
+    }
+
+    cat.prototype = new animal();
+   var c = new cat('wsscat', 'cute');
+    //     (new cat('wsscat')).action() //running
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cors form</title>
+    <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+  </head>
+  <body>
+    <p>跨域</p>
+    <script>
+      function request() {
+        console.error(" tjos:", this);
+        axios({
+          method: "post",
+          url: "http://127.0.0.1:3005/v1/installment/installmentEntrance",
+          params: {
+            msg: "hello cors",
+          },
+          headers: {
+            "Content-type": "application/x-www-form-urlencoded",
+          },
+        }).then((res) => {
+          console.error(" res:", res, " this:", this);
+          document.write(JSON.stringify(res.data.result));
+        });
+      }
+      setTimeout(request, 2000);
+    </script>
+  </body>
+</html>

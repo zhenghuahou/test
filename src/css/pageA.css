@@ -1,0 +1,58 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: #ccc;
+	font-size: 14px;
+	margin: 0;
+	padding:0;
+}
+
+a{
+	color: #333;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+i,em{font-style: normal;}
+
+div{
+	padding-bottom: 0px;
+}
+
+p{
+	line-height: 1.8;
+}
+
+.pic1,.pic2{
+	width: 50px;
+	height: 50px;
+	background-color: #ccc;
+	margin:20px;
+}
+
+/*.pic1{
+	background: url(../pic/test.min.png) center top no-repeat;
+	background: url(../pic/w1.png) center top no-repeat;
+}*/
+
+.pic2{
+	/*background: url(../pic/w2.min.png) center top no-repeat;*/
+}
+
+.pic3{
+	/*background: url(../pic/partnermin.png) center top no-repeat;*/
+}
+
+
+
+
+
+
+
+
+
+
+

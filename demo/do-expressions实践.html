@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>数组随机排序</title>
+  <meta charset="utf-8">
+  <style>
+    #p1{
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+ <script type="text/javascript">
+    var config = ~false+1
+    var a, b;
+
+    a = do {
+        if (config) {
+            b = 4 + 38;
+        }else{
+             [1,23];
+        }
+    };
+
+    let x = 100, y = 20;
+        let c = do {
+        if(x > 10) {
+            if(y > 20) {
+             'big x, big y';
+            } else {
+            'big x, small y';
+            }
+        } else {
+            "hello world"
+        }}
+
+    let d = do { 3 * 10 };
+
+    console.log(' a:',a,' b:',b,' c:',c,' d:',d,'--->',do { 3 * 10 });
+    // a: [1, 23]  b: undefined  c: big x, small y  d: 30 ---> 30
+
+    var data = do {
+      const abc=12;abc
+    //   doSomethingElse() // sideEffect
+    }
+
+    let dates = do { let dates1 = []; let start, end, exclude; // helper variables
+        dates1.push('1');
+        dates1.push('2');
+        dates1.push('a','b','c','e',[1,9,10]) // return the initialized array 
+    };
+    console.log(' data:',data,' dates:',dates) //data: 12  dates: 7
+
+    var t = do {
+      console.log('lol');
+    }; //  `do` expression-statement, followed by an empty `while` loop
+    while (console.log('random'), Math.random() < 0.8);
+    //  logs one 'lol' and at least one 'random'
+
+    do {
+      console.log('lol1');
+    } //  `do`-`while` loop
+    while (console.log('random1'), Math.random() < 0.8); 
+    // logs at least one pair of 'lol' and 'random' followed by a final 'random'
+ </script>
+ <script>
+    let tried = do {
+        try {
+      foo(0);
+    } catch (e) {
+        console.log('%c e:'+e,"color:#360;font-size:40px");
+    //   throw e
+        12
+    }};
+
+     let test = do { try {
+       f()
+     } catch (e) { 0 } }
+
+
+    let stuff = (()=>{ try {
+       return f();
+    } catch(e){ return [12,45]; } })();
+    console.warn(' tried:',tried,'test:',test,' stuff:',stuff);
+    //tried: undefined test: undefined  stuff: [12, 45]
+
+
+    //ok
+     0,do {
+        try {
+      foo(0);
+    } catch (e) {
+        console.log('%c e:'+e,"color:#360;font-size:40px");
+    //   throw e
+    }};
+
+ </script>
+</body>
+</html>

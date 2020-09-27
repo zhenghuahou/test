@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>animation-fill-mode 属性实例</title>
+</head>
+<body>
+    <style type="text/css">
+        .demo_box {
+            border: 1px solid #3DA5DC;
+            background: #a4dcf9;
+            height: 100px;
+            width: 200px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .demo_box {
+            animation: 2s f1 5s 2 linear;
+            position: relative;
+            left: 10px;
+            width: 100px;
+            height: 100px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        /*
+@keyframes duration | timing-function | delay | 
+   iteration-count | direction | fill-mode | play-state | name 
+  animation: 3s ease-in 1s 2 reverse both paused slidein;
+*/
+        
+        .forwards {
+            animation-fill-mode: forwards;
+        }
+        
+        .backwards {
+            animation-fill-mode: backwards;
+        }
+        
+        .both {
+            animation-fill-mode: both;
+        }
+        
+        @-webkit-keyframes f1 {
+            0% {
+                left: 100px;
+                background-color: #360;
+            }
+            50% {
+                left: 100px;
+                background-color: #360;
+            }
+            100% {
+                left: 500px;
+                background-color: red;
+            }
+        }
+    </style>
+    <div class="demo_box forwards">我留在终点forwards</div>
+    <div class="demo_box backwards">我只回到原点backwards</div>
+    <div class="demo_box both">我both</div>
+</body>
+</html>

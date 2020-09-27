@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>执行 innerHTML 里的 script</title>
+  <meta charset="utf-8">
+  <style>
+    #p1{
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="box" class="box">
+        <div id="div0">
+            <div id="div1" >
+                <p id="p1" onclick="console.warn('p1 onclick')">
+                  按钮p1
+                </p>
+            </div>
+        </div>
+  </div>
+  
+
+  <script>
+    // document.getElementById('div0').addEventListener('click',function(){
+    //     console.log(' div0的事件')
+    // },true);
+    // document.getElementById('div1').addEventListener('click',function(){
+    //     console.log(' div1的事件')
+    // },true);
+    // document.getElementById('p1').addEventListener('click',function(){
+    //     console.log(' p1的事件')
+    // },true)
+
+    // div0的事件
+    // div1的事件
+    // 111
+    // p1的事件
+  </script>
+
+  <script>
+    // document.getElementById('div0').addEventListener('click',function(){
+    //     console.log(' div0的事件')
+    // },true);
+    // document.getElementById('div1').addEventListener('click',function(){
+    //     console.log(' div1的事件')
+    // },true);
+    // document.getElementById('p1').addEventListener('click',function(){
+    //     console.log(' p1的事件 -->false')
+    // },false)
+    // document.getElementById('p1').addEventListener('click',function(){
+    //     console.log(' p1的事件-->true')
+    // },true)
+    //  div0的事件
+    //  div1的事件
+    //  111
+    //  p1的事件 -->false
+    //  p1的事件-->true
+  </script>
+  <script>
+    //  document.getElementById('div0').addEventListener('click',function(){
+    //     console.log(' div0的事件')
+    // },true);
+    // document.getElementById('div1').addEventListener('click',function(){
+    //     console.log(' div1的事件')
+    // },true);
+    // document.getElementById('p1').addEventListener('click',function(){
+    //     console.log(' p1的事件-->true')
+    // },true)
+    //  document.getElementById('p1').addEventListener('click',function(){
+    //     console.log(' p1的事件 -->false')
+    // },false)
+    //  div0的事件
+    //  div1的事件
+    //  111
+    //  p1的事件-->true
+    //  p1的事件 -->false
+  </script>
+  <script>
+    // document.getElementById('p1').addEventListener('click',function(){
+    //     console.log(' p1的事件------------>true')
+    // },true);
+    // document.getElementById('p1').onclick = function () {
+    //   console.warn('p1的事件222');
+    // }
+
+    // document.getElementById('div1').addEventListener('click',function(){
+    //     console.log(' div1的事件')
+    // },true);
+    //  document.getElementById('div0').addEventListener('click',function(){
+    //     console.log(' div0的事件')
+    // },true);
+    
+    //  div0的事件
+    //  div1的事件
+    //  p1的事件------------>true
+    //  p1的事件222
+    //  div1 onclick
+  </script>
+  <script>
+    document.getElementById('div0').addEventListener('click',function(){
+        console.log(' div0的事件')
+    },false);
+    document.getElementById('p1').addEventListener('click',function(){
+        console.log(' p1的事件------------>true')
+    },true);
+    document.getElementById('p1').onclick = function () {
+      console.warn('p1的事件222');
+    }
+
+    document.getElementById('div1').addEventListener('click',function(){
+        console.log(' div1的事件')
+    },false);
+   
+    //  p1的事件------------>true
+    //  p1的事件222
+    //  div1 onclick
+    //  div1的事件
+    //  div0的事件
+
+    //先触发捕获事件在触发冒泡事件，target 对象上的事件执行顺序与addEventListener绑定时用的true false 没关系，target 对象上的事件执行顺序是按绑定顺序执行的，即按照addEventListener/onclick声明定义的顺序执行
+
+
+
+  </script>
+
+</body>
+
+</html>

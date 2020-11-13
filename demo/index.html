@@ -1,34 +1,48 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+
+<head>
   <title>仿andriod水波效果</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<body>
-<div id="box" class="box">
-  <ul class="demo">
-    <li>12345<div>我是测试文件<span>我是span</span></div></li>
-    <li>2</li>
-    <li>3</li>
-  </ul>
-</div>
-	<h3>首页</h3>
-	<a href="/generator">generator案例</a>
-    <a href="/promise">promise案例</a>
-    <a href="/promiseCode">promiseCode源码案例</a>
-	<a href="/co">co案例</a>
 
-	<!-- <script src="../dist/app.bundle.js"></script> -->
+<body>
+  <div id="box" class="box">
+    <ul class="demo">
+      <li>12345<div>我是测试文件<span>我是span</span></div>
+      </li>
+      <li>2</li>
+      <li>3</li>
+    </ul>
+  </div>
+  <h3>首页</h3>
+  <a href="/generator">generator案例</a>
+  <a href="/promise">promise案例</a>
+  <a href="/promiseCode">promiseCode源码案例</a>
+  <a href="/co">co案例</a>
+
+  <script>
+
+    const aa = navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1;
+
+    alert('[share-config]>>>>> config.wechat.host:--->' + navigator.userAgent.toLowerCase());
+    alert(' aa:' + aa)
+
+
+  </script>
+
+  <!-- <script src="../dist/app.bundle.js"></script> -->
   <script type="text/javascript">
-    document.querySelector('.demo').addEventListener('click',(e)=>{
+    document.querySelector('.demo').addEventListener('click', (e) => {
       // return
-      let dom=e.target;
+      let dom = e.target;
       // if(dom===e.currentTarget){
       //   return;
       // }
-      console.warn(' e:',e,' e.currentTarget:',e.currentTarget,'dom.parentNode!=e.currentTarget:',dom.parentNode!=e.currentTarget);
-      while(dom.parentNode!=e.currentTarget){
-        dom=dom.parentNode;
+      console.warn(' e:', e, ' e.currentTarget:', e.currentTarget, 'dom.parentNode!=e.currentTarget:', dom.parentNode != e.currentTarget);
+      while (dom.parentNode != e.currentTarget) {
+        dom = dom.parentNode;
         window.dd = dom
-        console.warn('  dom:',dom)
+        console.warn('  dom:', dom)
       }
       console.log(dom.innerHTML);
     })
